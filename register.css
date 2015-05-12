@@ -1,0 +1,6 @@
+/* Written by lpeters
+ * Date: 2015/05/12
+ * Usage: Included by register.php.
+ */
+input[type="text"],input[type="submit"],input[type="reset"],select {background-color:peachpuff;font-family:"Courier New",Courier,monospace;}
+.formHint {position:absolute;top:8em;left:10em;visibility:hidden;}
