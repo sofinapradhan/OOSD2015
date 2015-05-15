@@ -57,7 +57,7 @@ if (isset($header_script))
 			<td width='10%' align='center'><a href='register.php'>Register</a></td>
 			<td width='10%' align='center'><a href='vacation.php'>Vacation</a></td>
 			<td width='10%' align='center'><a href='contact.php'>Contact</a></td>
-			<td width='10%' align='center'>About</td>
+			<td width='10%' align='center'><a href='about.php'>About</a></td>
 			</tr>
 		</table>
 		<hr>
