@@ -15,7 +15,6 @@
 <head>
 <meta charset='UTF-8' />
 <title><?= $header_title ?></title>
-<link href='penguin.ico' rel='icon' />
 <link href='global.css' rel='stylesheet' type='text/css' />
 <link href='menu.css' rel='stylesheet' type='text/css' />
 <?php
@@ -40,15 +39,26 @@ if (isset($header_script))
 	<div id='companylogo'> </div>   <!-- this is for logo -->
 	<div id='header1'>
 		<table width='1010' height='10'>
-			<tr><td align='right' width='60%'><img src='./pic/map.jpeg' height='30' width='30'>Map & direction</td><td align='right' width='15%'><img src='./pic/meeting.jpeg' height='30' width='30'>Meetings</td><td align='center'><img src='./pic/photog.jpg' width='30' height='30'>Photo Gallery</td></tr>
+			<tr>
+			<td align='right' width='60%'><img src='img/map.jpg' height='30' width='30'>Map & direction</td>
+			<td align='right' width='15%'><img src='img/meeting.jpg' height='30' width='30'>Meetings</td>
+			<td align='center'><img src='img/photog.jpg' width='30' height='30'>Photo Gallery</td>
+			</tr>
 		</table>
 	</div>
 	<div id='header2'>
-		<div style='text-align:top;font-size:180%;width:100%;border:0px solid;'>Welcome to Travel Experts &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <font size='5%'> Toll free Reservations (866) 555 7897 </font></div>
+		<div style='text-align:top;font-size:180%;width:100%;border:0px solid;'>Welcome to Travel Experts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='5%'>Toll free Reservations (866) 555 7897</font></div>
 	</div>
 	<div id='header3'>
 		<table>
-			<td width='5%' align='center'><a href ='index1.html'>Home</a></td><td width='9%' align='center'><a href='register.php'>Register</a></td><td width='10%' align='center'>Hotel</td><td width='10%' align='center'><a href='vacation.html'>Vacation</td><td width='10%' align='center'><a href='contact.php'>Contact Us</a></td><td width='10%' align='center'>Getting Here</td>
+			<tr>
+			<td width='5%' align='center'><a href='index.php'>Home</a></td>
+			<td width='9%' align='center'><a href='packages.php'>Packages</a></td>
+			<td width='10%' align='center'><a href='register.php'>Register</a></td>
+			<td width='10%' align='center'><a href='vacation.php'>Vacation</a></td>
+			<td width='10%' align='center'><a href='contact.php'>Contact</a></td>
+			<td width='10%' align='center'>About</td>
+			</tr>
 		</table>
 		<hr>
 	</div>
