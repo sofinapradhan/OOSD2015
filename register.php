@@ -19,21 +19,28 @@ if (isset($_POST['gobutton']))
 else
 {
 	print("<article>
-<p id='fh-custname' class='formHint'>Customer's First Name.</p>
-<p id='fh-custaddy' class='formHint'>Customer's Last Name.</p>
+<p id='fh-custfirstname' class='formHint'>Customer's First Name.</p>
+<p id='fh-custlastname' class='formHint'>Customer's Last Name.</p>
+<p id='fh-custaddress' class='formHint'>Customer's Home Address.</p>
 <p id='fh-custcity' class='formHint'>Customer's Home City.</p>
 <p id='fh-custprov' class='formHint'>Customer's Home Province.</p>
-<p id='fh-custpost' class='formHint'>Customer's Postal Code.</p>
+<p id='fh-custcountry' class='formHint'>Customer's Home Country.</p>
+<p id='fh-custpostal' class='formHint'>Customer's Postal Code.</p>
+<p id='fh-custhomephone' class='formHint'>Customer's Home Phone Number.</p>
+<p id='fh-custbusphone' class='formHint'>Customer's Work Phone Number.</p>
+<p id='fh-custemail' class='formHint'>Customer's E-mail Address.</p>
 <p id='fh-destination' class='formHint'>Travel Destination.</p>
-<p id='fh-paymethod' class='formHint'>Monetary Compensation Transaction Protocol.</p>
+<p id='fh-ccname' class='formHint'>Credit Card Provider.</p>
+<p id='fh-ccnumber' class='formHint'>Credit Card Number.</p>
+<p id='fh-ccexpiry' class='formHint'>Credit Card Expiration.</p>
 <form id='regForm' name='register' method='post' action='{$_SERVER['PHP_SELF']}' onReset='clearWarn();'>
 <table>
-<tr><td><label for='custpnom'>First Name:</label></td><td><input type='text' name='custpnom' onFocus='showHint(this.name);' onBlur='hideHint(this.name);' /></td><td id='fb-custpnom'></td></tr>
-<tr><td><label for='custsnom'>Last Name:</label></td><td><input type='text' name='custsnom' onFocus='showHint(this.name);' onBlur='hideHint(this.name);' /></td><td id='fb-custsnom'></td></tr>
-<tr><td><label for='custaddy'>Address:</label></td><td><input type='text' name='custaddy' onFocus='showHint(this.name);' onBlur='hideHint(this.name);' /></td><td id='fb-custaddy'></td></tr>
+<tr><td><label for='custfirstname'>First Name:</label></td><td><input type='text' name='custfirstname' onFocus='showHint(this.name);' onBlur='hideHint(this.name);' /></td><td id='fb-custfirstname'></td></tr>
+<tr><td><label for='custlastname'>Last Name:</label></td><td><input type='text' name='custlastname' onFocus='showHint(this.name);' onBlur='hideHint(this.name);' /></td><td id='fb-custlastname'></td></tr>
+<tr><td><label for='custaddress'>Address:</label></td><td><input type='text' name='custaddress' onFocus='showHint(this.name);' onBlur='hideHint(this.name);' /></td><td id='fb-custaddress'></td></tr>
 <tr><td><label for='custcity'>City:</label></td><td><input type='text' name='custcity' onFocus='showHint(this.name);' onBlur='hideHint(this.name);' /></td><td id='fb-custcity'></td></tr>
 <tr><td><label for='custprov'>Province:</label></td><td><select name='custprov' onFocus='showHint(this.name);' onBlur='hideHint(this.name);'>
-	<option value=''>--- Select A Province ---</option>
+	<option value=''>---- Select Province ----</option>
 	<option value='AB'>Alberta</option>
 	<option value='BC'>British Columbia</option>
 	<option value='MB'>Manitoba</option>
@@ -48,12 +55,15 @@ else
 	<option value='SK'>Saskatchewan</option>
 	<option value='YT'>Yukon</option>
 	</select></td><td id='fb-custprov'></td></tr>
-<tr><td><label for='custpost'>Postal Code:</label></td><td><input type='text' name='custpost' 
+<tr><td><label for='custcountry'>Country:</label></td><td><select name='custcountry' onFocus='showHint(this.name);' onBlur='hideHint(this.name);'>
+	<option value=''>---- Select Country ----</option>
+	<option value='CA'>Canada</option>
+	<option value='US'>United States of America</option>
+	</select></td><td id='fb-custcountry'></td></tr>
+<tr><td><label for='custpostal'>Postal Code:</label></td><td><input type='text' name='custpostal' 
 	maxlength='7'
 	onChange='this.value = this.value.toUpperCase();'
-	onFocus='showHint(this.name);' onBlur='hideHint(this.name);' /></td><td id='fb-custpost'></td></tr>
-<tr><td><label for='custcountry'>Country:</label></td><td><input type='text' name='custcountry' 
-	onFocus='showHint(this.name);' onBlur='hideHint(this.name);' /></td><td id='fb-custcountry'></td></tr>
+	onFocus='showHint(this.name);' onBlur='hideHint(this.name);' /></td><td id='fb-custpostal'></td></tr>
 <tr><td><label for='custhomephone'>Home Phone:</label></td><td><input type='text' name='custhomephone' 
 	onFocus='showHint(this.name);' onBlur='hideHint(this.name);' /></td><td id='fb-custhomephone'></td></tr>
 <tr><td><label for='custbusphone'>Bus. Phone:</label></td><td><input type='text' name='custbusphone' 
@@ -66,12 +76,15 @@ else
 	<option value='hawaii'>Hawaii</option>
 	<option value='leo'>Low Earth Orbit</option>
 	</select></td><td id='fb-destination'></td></tr>
-<tr><td rowspan='5' valign='top'><label for='paymethod'>Method of Payment:</label></td>
-	<td><input type='radio' name='paymethod' value='cash' onFocus='showHint(this.name);' onBlur='hideHint(this.name);'>Cash Money</input></td><td id='fb-paymethod' rowspan='6' valign='top'></td></tr>
-<tr><td><input type='radio' name='paymethod' value='mastercard' onFocus='showHint(this.name);' onBlur='hideHint(this.name);'>MasterCard</input></td></tr>
-<tr><td><input type='radio' name='paymethod' value='cheque' onFocus='showHint(this.name);' onBlur='hideHint(this.name);'>Cheque</input></td></tr>
-<tr><td><input type='radio' name='paymethod' value='contract' onFocus='showHint(this.name);' onBlur='hideHint(this.name);'>Payment Plan</input></td></tr>
-<tr><td><input type='radio' name='paymethod' value='bloodcontract' onFocus='showHint(this.name);' onBlur='hideHint(this.name);'>First-Born Child</input></td></tr>
+<tr><td rowspan='4' valign='top'><label for='ccname'>Method of Payment:</label></td>
+	<td><input type='radio' name='ccname' value='AMEX' onFocus='showHint(this.name);' onBlur='hideHint(this.name);'><img src='img/card_amex.png' alt='American Express' /></input></td><td id='fb-ccname' rowspan='4' valign='top'></td></tr>
+<tr><td><input type='radio' name='ccname' value='Diners' onFocus='showHint(this.name);' onBlur='hideHint(this.name);'><img src='img/card_dine.png' alt='Diners Club' /></input></td></tr>
+<tr><td><input type='radio' name='ccname' value='MC' onFocus='showHint(this.name);' onBlur='hideHint(this.name);'><img src='img/card_mast.png' alt='MasterCard' /></input></td></tr>
+<tr><td><input type='radio' name='ccname' value='VISA' onFocus='showHint(this.name);' onBlur='hideHint(this.name);'><img src='img/card_visa.png' alt='Visa' /></input></td></tr>
+<tr><td><label for='ccnumber'>Card Number:</label></td><td><input type='text' name='ccnumber' 
+	onFocus='showHint(this.name);' onBlur='hideHint(this.name);' /></td><td id='fb-ccnumber'></td></tr>
+<tr><td><label for='ccexpiry'>Expiration:</label></td><td><input type='date' name='ccexpiry' 
+	onFocus='showHint(this.name);' onBlur='hideHint(this.name);' /></td><td id='fb-ccexpiry'></td></tr>
 <tr><td align='center'><input type='reset' name='rsbutton' value='Reset Form' onClick='return confirm(\"Are you sure you want to reset form?\");' /></td>
 	<td align='center'><input type='submit' name='gobutton' value='Submit Registration' onClick='return checkForm();' /></td><td></td></tr>
 </table>
