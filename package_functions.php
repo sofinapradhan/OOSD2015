@@ -31,7 +31,7 @@
 			print("
 				<table><tr>
 					<td>
-					<img src='images/package_" . $row["PkgName"] . ".jpg' height='360' width='480'>			
+					<img src='img/package_" . $row["PkgName"] . ".jpg' height='360' width='480'>			
 					
 					</td>
 						<td>
@@ -49,10 +49,10 @@
 				<table><tr>
 					<td>
 					<dl align='left'>
-					<img src='images/package_" . $row["PkgName"] . ".jpg' height='120' width='120'>
-					<img src='images/package_" . $row["PkgName"] . ".jpg' height='120' width='120'>
-					<img src='images/package_" . $row["PkgName"] . ".jpg' height='120' width='120'>
-					<img src='images/package_" . $row["PkgName"] . ".jpg' height='120' width='120'>
+					<img src='img/package_" . $row["PkgName"] . ".jpg' height='120' width='120'>
+					<img src='img/package_" . $row["PkgName"] . ".jpg' height='120' width='120'>
+					<img src='img/package_" . $row["PkgName"] . ".jpg' height='120' width='120'>
+					<img src='img/package_" . $row["PkgName"] . ".jpg' height='120' width='120'>
 					</dl>
 					</td>
 				</tr></table>
