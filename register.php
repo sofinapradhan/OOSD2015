@@ -76,11 +76,15 @@ else
 	<option value='hawaii'>Hawaii</option>
 	<option value='leo'>Low Earth Orbit</option>
 	</select></td><td id='fb-destination'></td></tr>
-<tr><td rowspan='4' valign='top'><label for='ccname'>Method of Payment:</label></td>
-	<td><input type='radio' name='ccname' value='AMEX' onFocus='showHint(this.name);' onBlur='hideHint(this.name);'><img src='img/card_amex.png' alt='American Express' /></input></td><td id='fb-ccname' rowspan='4' valign='top'></td></tr>
-<tr><td><input type='radio' name='ccname' value='Diners' onFocus='showHint(this.name);' onBlur='hideHint(this.name);'><img src='img/card_dine.png' alt='Diners Club' /></input></td></tr>
-<tr><td><input type='radio' name='ccname' value='MC' onFocus='showHint(this.name);' onBlur='hideHint(this.name);'><img src='img/card_mast.png' alt='MasterCard' /></input></td></tr>
-<tr><td><input type='radio' name='ccname' value='VISA' onFocus='showHint(this.name);' onBlur='hideHint(this.name);'><img src='img/card_visa.png' alt='Visa' /></input></td></tr>
+<tr><td><label for='ccname'>Method of Payment:</label></td>
+	<td>
+	<input type='radio' name='ccname' value='AMEX' onFocus='showHint(this.name);' onBlur='hideHint(this.name);'><img src='img/card_amex.png' alt='American Express' /></input>
+	<input type='radio' name='ccname' value='Diners' onFocus='showHint(this.name);' onBlur='hideHint(this.name);'><img src='img/card_dine.png' alt='Diners Club' /></input>
+	<input type='radio' name='ccname' value='MC' onFocus='showHint(this.name);' onBlur='hideHint(this.name);'><img src='img/card_mast.png' alt='MasterCard' /></input>
+	<input type='radio' name='ccname' value='VISA' onFocus='showHint(this.name);' onBlur='hideHint(this.name);'><img src='img/card_visa.png' alt='Visa' /></input>
+	</td>
+	<td id='fb-ccname'></td>
+	</tr>
 <tr><td><label for='ccnumber'>Card Number:</label></td><td><input type='text' name='ccnumber' 
 	onFocus='showHint(this.name);' onBlur='hideHint(this.name);' /></td><td id='fb-ccnumber'></td></tr>
 <tr><td><label for='ccexpiry'>Expiration:</label></td><td><input type='date' name='ccexpiry' 
