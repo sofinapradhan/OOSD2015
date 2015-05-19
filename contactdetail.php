@@ -1,61 +1,70 @@
 <?php
 
-
-
-?>
+/* Written by Sofina Pradhan
+ * Date: 2015/05/17
+ * Usage: show the contact information for all Agencies, as well as all agents under each agencies.
+ */
+ 
+   include("db.php");        
+   $agentid =$_GET['id'];    //getting agentid from contact page to show the list of agents for the particular Agency
+   $query = "select * from Agencies where Agencyid = $agentid ";
+   $result = mysqli_query($con, $query) or die (" SQL query error");
+   while ($row = mysqli_fetch_assoc($result))
+   {
+        $mainaddress = "";
+		$mainaddress  = "<p><h4>Address: $row[AgncyAddress]<br />";
+		$mainaddress .= "$row[AgncyCity] \n";
+		$mainaddress .= "$row[AgncyProv] <br />";
+		$mainaddress .= "$row[AgncyPostal] \n";
+		$mainaddress .= "$row[AgncyCountry] <br />";
+		$mainaddress .= "Phone No: .$row[AgncyPhone] <br />";
+		$mainaddress .= "Fax No: .$row[AgncyFax] <br /></h></p>";
+		print($mainaddress);
+   }
+?>   
+	
 <!DOCTYPE html>
 
 
-<head><title>  </title>
-<link href="menu.css" type="text/css" rel="stylesheet">
-<link href="FontArialGreenText.css" rel="stylesheet" type="text/css">
-
-</head>
-<style>
-
-</style>
-
-
-<body style="background-color:#FAEBDE;">
-
- 	
-    <div style="position:absolute;width:70%;height:70%;top:5%;left:2%;right:0px;border:0px solid black;">
+<html>
+	<head>
+		<title>Agents Information</title>
+		<link href="contact.css" type="text/css" rel="stylesheet">   
+	</head>
+	<body bgcolor=#FACFAA> 
+			
+					<?php           // show the list of agents filter by Agencyid
+					    $sql = "select AgtFirstName,AgtMiddleInitial,AgtLastName,AgtBusPhone,AgtEmail,AgtPosition from agents where Agencyid = $agentid order by AgtFirstName";
+						$result = mysqli_query($con, $sql) or die("SQL Error");
+                           
+					?>
+					
+					<table border="1" cellpadding="5" cellspacing="0">
+					   <thead>
+	                     <tr>
+						    <th class="tableheader">First Name</th>
+							<th class="tableheader">Middle Name</th>
+							<th class="tableheader">Last Name</th>
+							<th class="tableheader">Business Phone Number</th>
+							<th class="tableheader">Email Address</th>
+							<th class="tableheader">Position</th>
+						 </tr>
+					   </thead>	 
 	   
-	    <h3>Agents Contact Information:</h3>
- 
-     <ol type="1">
-        <li> Senior Agent: 
-        
-             <ul>
-               <li>Name : Janet Delton</li>
-               <li>Contact No. : 403-222-5698</li>
-			   <li>Email: janet.del@travelexperts.ca</li>
-             </ul>
-
-        <li> Intermediate Agent:
-             <ul>
-                <li>Name: Judy Lesli </li>
-                <li>Contact No: 402-258-5987</li>
-				<li>Email:leslie@travelexperts.ca</li>
-             </ul>
-        <li> Junior Agent:
-              <ul>
-                <li>Name: Dennis Reynolds</li>
-                <li> Contact No: 4032-256-2589</li>
-				<li>Email: dennis@travelexperts.ca</li>
-              </ul>
-       
-    </ol>
+						<tbody>
+						    <?php   while($row = mysqli_fetch_assoc($result))  { ?>
+						    <tr>
+							    <td><?php echo $row["AgtFirstName"]; ?></td>
+							    <td><?php echo $row["AgtMiddleInitial"]; ?></td>
+							    <td><?php echo $row["AgtLastName"]; ?></td>
+							    <td><?php echo $row["AgtBusPhone"]; ?></td>
+							    <td><?php echo $row["AgtEmail"]; ?></td>
+							    <td><?php echo $row["AgtPosition"]; ?></td>
+						    </tr>
+							<?php } ?>  
+							<?php  mysqli_close($con); ?>
+			            </tbody>
+			        </table>
+	</body>
 	
-    </div>
-	
-	
-
-
-  
-
-</body>
-
-
-
-</html>
+</html> 
