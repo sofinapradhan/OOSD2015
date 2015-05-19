@@ -1,0 +1,50 @@
+
+/* Packages section */
+
+.package-main {
+	color: white;
+	float: left;
+	margin-top: 1em;
+	margin-left: 2em;
+	margin-right: 2em;
+	margin-bottom: 1em;
+	width: 44%;
+	height: 75%;
+	min-width: 480px;
+	background-color: transparent;
+}
+
+.package-main img {
+	float: left;
+	width: 100%;
+	max-width: 600px;
+	max-height: 400px;
+}
+
+.package-main h1 {
+	color: #FFC266;
+}
+
+#img-pack-micro {
+	float: left;
+	width: 100%;
+	min-height: 100px;
+	min-width: 100px;
+	max-height: 120px;
+	max-width: 120px;
+}
+
+.package-mini {
+
+}
+
+.package-mini img {
+	float: left;
+	max-width: 150px;
+	min-width: 100px;
+    width: 20%;
+	margin-top: 5px;
+	margin-left: 5%;
+	margin-right: 5%;
+	margin-bottom: 5px;
+}
