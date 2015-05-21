@@ -56,7 +56,7 @@ You will need to use the following tables to enhance the web pages you developed
 			$myDateEnd = formatDate($row["PkgEndDate"]);
 			
 			// Compare package date to current date; only show valid packages >= current date
-			if (strtotime($row['PkgEndDate']) < time() )
+			if (strtotime($row['PkgEndDate']) >= time() )
 			{
 				print("
 					<img src='img/pack_" . $myPkgName . ".jpg'>
