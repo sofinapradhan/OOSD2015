@@ -1,17 +1,23 @@
 
 /* Packages section */
 
+main {
+	overflow-y: auto;
+}
+
+button {
+	background: #FFC266;
+	color: #000080;
+}
+
 .package-main {
 	color: white;
-	float: left;
+	float: right;
 	margin-top: 1em;
-	margin-left: 2em;
 	margin-right: 2em;
-	margin-bottom: 1em;
 	width: 44%;
 	height: 75%;
 	min-width: 480px;
-	background-color: transparent;
 }
 
 .package-main img {
@@ -35,16 +41,20 @@
 }
 
 .package-mini {
+	color: white;
+	float: left;
+	margin-top: 1em;
+	margin-left: 2em;
+	min-width: 320px;
+}
 
+.package-mini h2 {
+	color: #FFC266;
 }
 
 .package-mini img {
 	float: left;
-	max-width: 150px;
-	min-width: 100px;
-    width: 20%;
-	margin-top: 5px;
-	margin-left: 5%;
-	margin-right: 5%;
-	margin-bottom: 5px;
+	margin-right: 1em;
+	width: 34%;
+	min-width: 220px;
 }
