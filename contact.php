@@ -110,7 +110,7 @@ include("db.php");
 					echo "</p>";
 					 // assigning iframe properties to show google maps for the addresses. The address is being retrieved fron the database. One more column needs to be added to Agency table
 					$outimage = "<iframe width='369' height='150' frameborder='1' scrolling='no' marginheight='0' marginwidth='0' src='";
-					$outimage .= $row["Map"];
+					$outimage .= $row["AgncyMap"];
 					$outimage .= "'></iframe>";
 					print("$outimage <br />");
 					echo "<hr>";
