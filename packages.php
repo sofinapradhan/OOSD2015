@@ -6,12 +6,28 @@
 	require("db.php");
 	
 	print ("<main>");
+
+	$packageID = 1;
+	include("package_functions.php");
 ?>
 	
-		<?php
-		include("package_functions.php");
-		selectPackages(0);
-		?>
+	<div class='package-mini'>
+		<table>
+			<tr><td>
+			<?php selectPackagesMini(); ?>
+			</td></tr>
+		</table>
+	</div>
+
+
+	<?php
+		if($_GET){
+			if(isset($_GET['packageID'])){
+			selectPackages($_GET['packageID']);
+			}
+		}
+	?>	
+	
 
 <?php
 	print("</main>");
