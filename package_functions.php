@@ -61,7 +61,7 @@ You will need to use the following tables to enhance the web pages you developed
 				print("
 					<img src='img/pack_" . $myPkgName . ".jpg'>
 					<h2 align='left'>" . $row["PkgName"] . " $" . number_format($totalPrice, 0) . "</h2>
-					<div class='pack-date-start'>Start Date: " . $myDateStart . "</div>
+					<div class='pack-date-start" . $row["PackageId"] . "'>Start Date: " . $myDateStart . "</div>
 					<div id='pack-date-end'>End Date: " . $myDateEnd . "</div>
 					<button><a href='packages.php?packageID=" . $row["PackageId"] . "'>Details</a></button>
 					<button><a href='register.php?packageID=" . $row["PackageId"] . "'>Book Now</a></button>
@@ -72,7 +72,7 @@ You will need to use the following tables to enhance the web pages you developed
 			// If package start date < current date, use CSS to make start date bold and red
 			if (strtotime($row['PkgStartDate']) < time() )
 			{
-				print("<script>setColorRed('pack-date-start');</script>");
+				print("<script>setColorRed('pack-date-start" . $row["PackageId"] . "');</script>");
 			}
 		} 
 		
@@ -83,8 +83,6 @@ You will need to use the following tables to enhance the web pages you developed
 	// 
 	function selectPackages($packageID)
 	{
-		//$packageID = $_GET['packageID'];
-		
 		global $packageText;
 		global $packageImage;
 		
@@ -107,8 +105,7 @@ You will need to use the following tables to enhance the web pages you developed
 			$i = $row["PackageId"];
 			
 			$myPkgName = strtok($row["PkgName"], " ");
-			
-			
+						
 			$totalPrice = $row["PkgBasePrice"] + $row["PkgAgencyCommission"];
 			
 			// MySQL store date in PHP equivalent of: date("Y-m-d H:i:s"); 
@@ -116,7 +113,7 @@ You will need to use the following tables to enhance the web pages you developed
 			$myDateEnd = formatDate($row["PkgEndDate"]);
 				
 			// Compare package date to current date; only show valid packages >= current date
-			if (strtotime($row['PkgEndDate']) < time() )
+			if (strtotime($row['PkgEndDate']) >= time() )
 			{
 				print("
 					<div class='package-main'>
@@ -124,17 +121,21 @@ You will need to use the following tables to enhance the web pages you developed
 							<tr><td>
 								<h1>" . $row["PkgName"] . " $" . number_format($totalPrice, 0) . "</h1>
 								<p align='left'>" . $packageText[$i] . "</p>
-								<div class='pack-date-start'>Start Date: " . $myDateStart . "</div>
+								<div class='pack-date-start" . $row["PackageId"] . "'>Start Date: " . $myDateStart . "</div>
 								<div class='pack-date-end'>End Date: " . $myDateEnd . "</div>
 								<div>Package Includes:" . $row["PkgDesc"] . "</div>
 							</td></tr>
 							<tr><td>
-								<img src='img/pack_" . $myPkgName . ".jpg'></td></tr>
+								<img id='img-pack-mini' src='img/pack_" . $myPkgName . ".jpg'></td></tr>
 							<tr><td>
-								<img id='img-pack-micro' src='img/pack_" . $myPkgName . $i . ".jpg' >
-								<img id='img-pack-micro' src='img/pack_" . $myPkgName . $i . ".jpg' >
-								<img id='img-pack-micro' src='img/pack_" . $myPkgName . $i . ".jpg' >
-								<img id='img-pack-micro' src='img/pack_" . $myPkgName . $i . ".jpg' >
+				");
+							for ($i=0; $i < count($packageText); $i++)
+							{
+								print("
+									<img id='img-pack-micro' src='img/pack_" . $myPkgName . $i . ".jpg' onmouseover='showImageMini(" . $i . ")'>
+								");
+							}
+				print("
 							</td></tr>
 						</table>
 					</div>
@@ -144,7 +145,7 @@ You will need to use the following tables to enhance the web pages you developed
 			// If package start date < current date, use CSS to make start date bold and red
 			if (strtotime($row['PkgStartDate']) < time() )
 			{
-				print("<script>setColorRed('pack-date-start');</script>");
+				print("<script>setColorRed('pack-date-start" . $row["PackageId"] . "');</script>");
 			}
 		} 
 		
