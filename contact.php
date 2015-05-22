@@ -33,8 +33,7 @@ include("db.php");
 		     message = message + "First name";
 			 myform.fname.style.backgroundColor ="#F7BB86";    /* if empty, message will be shown and the color of the text box changed */
 		  }
-		  
-		  if (myform.lname.value == "")
+		 if (myform.lname.value == "")
 		  {
 		    if (message != "")
 		     {
