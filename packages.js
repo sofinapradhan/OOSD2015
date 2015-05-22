@@ -9,4 +9,10 @@
 			x[i].style.fontWeight = "bold";
 		}
 	}
+	
+		
+	function showImageMini($id)
+	{
+		document.getElementById("img-pack-mini").src="img/pack_" + "asian" + $id + ".jpg";
+	}
 
