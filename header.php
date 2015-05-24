@@ -15,6 +15,7 @@
 <head>
 <meta charset='UTF-8' />
 <title><?= $header_title ?></title>
+<link href='img/favicon.ico' rel='shortcut icon' type='image/x-icon' />
 <link href='global.css' rel='stylesheet' type='text/css' />
 <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css' rel='stylesheet' type='text/css' /> <!-- Latest compiled and minified CSS -->
 <?php
@@ -35,15 +36,23 @@ if (isset($header_script))
 ?>
 </head>
 <body>
-<header id='titleheader'>
-	<h1>Welcome to Travel Experts!&trade;</h1>
+<header>
+<div id="logoBar">
+<img src="img/mainLogo.png">
+</div>
+<div id="socialBar">
+<a href="http://www.facebook.com"><img src="img/facebook.png"></a>
+<a href="http://www.twitter.com"><img src="img/twitter.png"></a>
+</div>
 </header>
-<nav id='navBar'>
-	<ul>
-		<li><a href='index.php' class='button'>Home</a></li>
-		<li><a href='packages.php' class='button'>Travel Packages</a></li>
-		<li><a href='register.php' class='button'>Register</a></li>
-		<li><a href='about.php' class='button'>About / FAQ</a></li>
-		<li><a href='contact.php' class='button'>Contact</a></li>
-	</ul>
+<nav>
+	<div id="navBar">
+		<ul>
+			<li><a href="index.php" class="button">Home</a></li>
+			<li><a href="packages.php?packageID=0" class="button">Travel Packages</a></li>
+			<li><a href="register.php" class="button">Register</a></li>
+			<li><a href="about.php" class="button">About / FAQ</a></li>
+			<li><a href="contact.php" class="button">Contact</a></li>
+		</ul>
+	</div>
 </nav>
