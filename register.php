@@ -54,14 +54,23 @@ if (isset($_POST['gobutton']))
 }
 else
 {
-	$sql = 'SELECT `PackageId`, `PkgName` FROM `packages`;';
+	$sql = 'SELECT `PackageId`, `PkgName`, `PkgBasePrice` FROM `packages`;';
 	$result = mysqli_query($con, $sql) or die('Query Failed: ' . mysqli_error($con));
-	$packList = Array();
+	$packList = Array('------ Go To ------');
+	$costList = Array('N/A');
 	while($row = mysqli_fetch_array($result)) {
 		$packList[$row['PackageId']] = $row['PkgName'];
+		$costList[$row['PackageId']] = "\$" . substr($row['PkgBasePrice'],0,-2);
 	}
 	mysqli_free_result($result);
 	mysqli_close($con);
+	print("<script>
+	costList = ['" . implode("','", $costList) . "'];
+	function showCost(key)
+	{
+		document.getElementById('formCost').innerHTML = costList[key];
+	}
+	</script>");
 /*
 <p id='fh-custfirstname' class='formHint'>Customer's First Name.</p>
 <p id='fh-custlastname' class='formHint'>Customer's Last Name.</p>
@@ -81,6 +90,7 @@ else
 print("<article>
 <form id='regForm' name='register' method='post' action='{$_SERVER['PHP_SELF']}' onReset='clearWarn();'>
 <table>
+<tr><th colspan=2'>Customer Information</th><th></th><th></th></tr>
 <tr><td><label for='custfirstname'>First Name:</label></td>
 	<td><input type='text' name='custfirstname' onFocus='showHint(this.name);' onBlur='hideHint(this.name);' /></td>
 	<td id='fi-custfirstname'><img class='formicon' src='img/icon_info.png' title='Customers First Name'></td>
@@ -146,9 +156,9 @@ print("<article>
 	onFocus='showHint(this.name);' onBlur='hideHint(this.name);' /></td>
 	<td id='fi-custemail'><img class='formicon' src='img/icon_info.png' title='Customers E-mail Address'></td>
 	<td id='fb-custemail'></td></tr>
+<tr><th colspan=2'>Package Information</th><th></th><th></th></tr>
 <tr><td><label for='destination'>Destination:</label></td>
-	<td><select name='destination' onFocus='showHint(this.name);' onBlur='hideHint(this.name);'>
-	<option value=''>------ Go To ------</option>");
+	<td><select name='destination' onFocus='showHint(this.name);' onBlur='hideHint(this.name);' onChange='showCost(this.value);'>");
 	foreach ($packList as $key=>$val)
 	{
 		print("<option value='$key'" . (isset($_GET['packageID']) && $_GET['packageID'] == $key ? " selected" : NULL) . ">$val</option>");
@@ -156,11 +166,18 @@ print("<article>
 print ("</select></td>
 	<td id='fi-destination'><img class='formicon' src='img/icon_info.png' title='Travel Destination'></td>
 	<td id='fb-destination'></td></tr>
+<tr><td>Price:</td>
+	<td><span id='formCost'>" . $costList[(isset($_GET['packageID']) ? preg_replace('/[^0-9]/','',$_GET['packageID']) : 0)] . "</span></td>
+	<td></td><td></td></tr>
+<tr><th colspan=2'>Payment Information</th><th></th><th></th></tr>
 <tr><td><label for='ccname'>Method of Payment:</label></td>
 	<td>
 	<input type='radio' name='ccname' value='AMEX' onFocus='showHint(this.name);' onBlur='hideHint(this.name);'><img src='img/card_amex.png' alt='American Express' /></input>
+	&nbsp;
 	<input type='radio' name='ccname' value='Diners' onFocus='showHint(this.name);' onBlur='hideHint(this.name);'><img src='img/card_dine.png' alt='Diners Club' /></input>
+	&nbsp;
 	<input type='radio' name='ccname' value='MC' onFocus='showHint(this.name);' onBlur='hideHint(this.name);'><img src='img/card_mast.png' alt='MasterCard' /></input>
+	&nbsp;
 	<input type='radio' name='ccname' value='VISA' onFocus='showHint(this.name);' onBlur='hideHint(this.name);'><img src='img/card_visa.png' alt='Visa' /></input>
 	</td>
 	<td id='fi-ccname'><img class='formicon' src='img/icon_info.png' title='Credit Card Provider'></td>
@@ -177,7 +194,7 @@ print ("</select></td>
 	<td id='fi-ccexpiry'><img class='formicon' src='img/icon_info.png' title='Credit Card Expiration'></td>
 	<td id='fb-ccexpiry'></td></tr>
 <tr><td align='center'><input type='reset' name='rsbutton' value='Reset Form' onClick='return confirm(\"Are you sure you want to reset form?\");' /></td>
-	<td align='center'><input type='submit' name='gobutton' value='Submit Registration' onClick='return checkForm();' /></td><td></td></tr>
+	<td align='center'><input type='submit' name='gobutton' value='Submit Registration' onClick='return checkForm();' /></td><td></td><td></td></tr>
 </table>
 </form>
 </article>");
