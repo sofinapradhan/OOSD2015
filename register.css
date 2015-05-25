@@ -2,8 +2,10 @@
  * Date: 2015/05/12
  * Usage: Included by register.php.
  */
-input[type="text"],input[type="date"],input[type="submit"],input[type="reset"],select {background-color:#7F9FBF;font-family:"Courier New",Courier,monospace;}
-input[type="text"],input[type="date"],select {width:17em;}
+main {color:#FFFFFF;overflow-y:auto;}
+input[type="text"],input[type="month"],input[type="submit"],input[type="reset"],select {background-color:#7F9FBF;font-family:"Courier New",Courier,monospace;}
+input[type="text"],input[type="month"],select {width:17em;}
 input[type="submit"],input[type="reset"] {width:12em;}
 label {color:#7F9FBF;}
+.formicon {height:1.5em;}
 /*.formHint {position:absolute;top:8em;left:10em;visibility:hidden;}*/

@@ -12,135 +12,135 @@ function checkForm()
 	if (targForm.custfirstname.value == "")
 	{
 		errorFlag = true;
-		document.getElementById("fb-custfirstname").innerHTML = "<img src='img/icon_fail.png' style='height:1em' title='Error: First Name requires a value.'>";
+		document.getElementById("fb-custfirstname").innerHTML = "<img class='formicon' src='img/icon_fail.png' title='Error: First Name requires a value.'>";
 	}
 	else
 	{
-		document.getElementById("fb-custfirstname").innerHTML = "<img src='img/icon_pass.png' style='height:1em'>";
+		document.getElementById("fb-custfirstname").innerHTML = "<img class='formicon' src='img/icon_pass.png' title='Passed Validation'>";
 	}
 	if (targForm.custlastname.value == "")
 	{
 		errorFlag = true;
-		document.getElementById("fb-custlastname").innerHTML = "<img src='img/icon_fail.png' style='height:1em' title='Error: Last Name requires a value.'>";
+		document.getElementById("fb-custlastname").innerHTML = "<img class='formicon' src='img/icon_fail.png' title='Error: Last Name requires a value.'>";
 	}
 	else
 	{
-		document.getElementById("fb-custlastname").innerHTML = "<img src='img/icon_pass.png' style='height:1em'>";
+		document.getElementById("fb-custlastname").innerHTML = "<img class='formicon' src='img/icon_pass.png' title='Passed Validation'>";
 	}
 	if (targForm.custaddress.value == "")
 	{
 		errorFlag = true;
-		document.getElementById("fb-custaddress").innerHTML = "<img src='img/icon_fail.png' style='height:1em' title='Error: Address requires a value.'>";
+		document.getElementById("fb-custaddress").innerHTML = "<img class='formicon' src='img/icon_fail.png' title='Error: Address requires a value.'>";
 	}
 	else
 	{
-		document.getElementById("fb-custaddress").innerHTML = "<img src='img/icon_pass.png' style='height:1em'>";
+		document.getElementById("fb-custaddress").innerHTML = "<img class='formicon' src='img/icon_pass.png' title='Passed Validation'>";
 	}
 	if (targForm.custcity.value == "")
 	{
 		errorFlag = true;
-		document.getElementById("fb-custcity").innerHTML = "<img src='img/icon_fail.png' style='height:1em' title='Error: City requires a value.'>";
+		document.getElementById("fb-custcity").innerHTML = "<img class='formicon' src='img/icon_fail.png' title='Error: City requires a value.'>";
 	}
 	else
 	{
-		document.getElementById("fb-custcity").innerHTML = "<img src='img/icon_pass.png' style='height:1em'>";
+		document.getElementById("fb-custcity").innerHTML = "<img class='formicon' src='img/icon_pass.png' title='Passed Validation'>";
 	}
 	if (targForm.custprov.value == "")
 	{
 		errorFlag = true;
-		document.getElementById("fb-custprov").innerHTML = "<img src='img/icon_fail.png' style='height:1em' title='Error: Province requires a value.'>";
+		document.getElementById("fb-custprov").innerHTML = "<img class='formicon' src='img/icon_fail.png' title='Error: Province requires a value.'>";
 	}
 	else
 	{
-		document.getElementById("fb-custprov").innerHTML = "<img src='img/icon_pass.png' style='height:1em'>";
+		document.getElementById("fb-custprov").innerHTML = "<img class='formicon' src='img/icon_pass.png' title='Passed Validation'>";
 	}
 	if (targForm.custcountry.value == "")
 	{
 		errorFlag = true;
-		document.getElementById("fb-custcountry").innerHTML = "<img src='img/icon_fail.png' style='height:1em' title='Error: Country requires a value.'>";
+		document.getElementById("fb-custcountry").innerHTML = "<img class='formicon' src='img/icon_fail.png' title='Error: Country requires a value.'>";
 	}
 	else
 	{
-		document.getElementById("fb-custcountry").innerHTML = "<img src='img/icon_pass.png' style='height:1em'>";
+		document.getElementById("fb-custcountry").innerHTML = "<img class='formicon' src='img/icon_pass.png' title='Passed Validation'>";
 	}
 	//var re = new RegExp(/^[A-Z]\d[A-Z]\s?\d[A-Z]\d$/i);
 	if (targForm.custpostal.value == "")
 	{
 		errorFlag = true;
-		document.getElementById("fb-custpostal").innerHTML = "<img src='img/icon_fail.png' style='height:1em' title='Error: Postal Code requires a value.'>";
+		document.getElementById("fb-custpostal").innerHTML = "<img class='formicon' src='img/icon_fail.png' title='Error: Postal Code requires a value.'>";
 	}
 	//else if (!re.test(targForm.custpost.value))
 	else if (!new RegExp(/^[A-Z]\d[A-Z]\s?\d[A-Z]\d$/i).test(targForm.custpostal.value))
 	{
 		errorFlag = true;
-		document.getElementById("fb-custpostal").innerHTML = "<img src='img/icon_fail.png' style='height:1em' title='Error: Postal Code must be valid.'>";
+		document.getElementById("fb-custpostal").innerHTML = "<img class='formicon' src='img/icon_fail.png' title='Error: Postal Code must be valid.'>";
 	}
 	else
 	{
-		document.getElementById("fb-custpostal").innerHTML = "<img src='img/icon_pass.png' style='height:1em'>";
+		document.getElementById("fb-custpostal").innerHTML = "<img class='formicon' src='img/icon_pass.png' title='Passed Validation'>";
 	}
 	if (targForm.custhomephone.value == "")
 	{
 		errorFlag = true;
-		document.getElementById("fb-custhomephone").innerHTML = "<img src='img/icon_fail.png' style='height:1em' title='Error: Home Phone requires a value.'>";
+		document.getElementById("fb-custhomephone").innerHTML = "<img class='formicon' src='img/icon_fail.png' title='Error: Home Phone requires a value.'>";
 	}
 	else
 	{
-		document.getElementById("fb-custhomephone").innerHTML = "<img src='img/icon_pass.png' style='height:1em'>";
+		document.getElementById("fb-custhomephone").innerHTML = "<img class='formicon' src='img/icon_pass.png' title='Passed Validation'>";
 	}
 	if (targForm.custbusphone.value == "")
 	{
 		errorFlag = true;
-		document.getElementById("fb-custbusphone").innerHTML = "<img src='img/icon_fail.png' style='height:1em' title='Error: Work Phone requires a value.'>";
+		document.getElementById("fb-custbusphone").innerHTML = "<img class='formicon' src='img/icon_fail.png' title='Error: Work Phone requires a value.'>";
 	}
 	else
 	{
-		document.getElementById("fb-custbusphone").innerHTML = "<img src='img/icon_pass.png' style='height:1em'>";
+		document.getElementById("fb-custbusphone").innerHTML = "<img class='formicon' src='img/icon_pass.png' title='Passed Validation'>";
 	}
 	if (targForm.custemail.value == "")
 	{
 		errorFlag = true;
-		document.getElementById("fb-custemail").innerHTML = "<img src='img/icon_fail.png' style='height:1em' title='Error: E-mail Address requires a value.'>";
+		document.getElementById("fb-custemail").innerHTML = "<img class='formicon' src='img/icon_fail.png' title='Error: E-mail Address requires a value.'>";
 	}
 	else
 	{
-		document.getElementById("fb-custemail").innerHTML = "<img src='img/icon_pass.png' style='height:1em'>";
+		document.getElementById("fb-custemail").innerHTML = "<img class='formicon' src='img/icon_pass.png' title='Passed Validation'>";
 	}
 	if (targForm.destination.value == "")
 	{
 		errorFlag = true;
-		document.getElementById("fb-destination").innerHTML = "<img src='img/icon_fail.png' style='height:1em' title='Error: Destination requires a value.'>";
+		document.getElementById("fb-destination").innerHTML = "<img class='formicon' src='img/icon_fail.png' title='Error: Destination requires a value.'>";
 	}
 	else
 	{
-		document.getElementById("fb-destination").innerHTML = "<img src='img/icon_pass.png' style='height:1em'>";
+		document.getElementById("fb-destination").innerHTML = "<img class='formicon' src='img/icon_pass.png' title='Passed Validation'>";
 	}
 	if (targForm.ccname.value == "")
 	{
 		errorFlag = true;
-		document.getElementById("fb-ccname").innerHTML = "<img src='img/icon_fail.png' style='height:1em' title='Error: Credit Card Provider requires a value.'>";
+		document.getElementById("fb-ccname").innerHTML = "<img class='formicon' src='img/icon_fail.png' title='Error: Credit Card Provider requires a value.'>";
 	}
 	else
 	{
-		document.getElementById("fb-ccname").innerHTML = "<img src='img/icon_pass.png' style='height:1em'>";
+		document.getElementById("fb-ccname").innerHTML = "<img class='formicon' src='img/icon_pass.png' title='Passed Validation'>";
 	}
 	if (targForm.ccnumber.value == "")
 	{
 		errorFlag = true;
-		document.getElementById("fb-ccnumber").innerHTML = "<img src='img/icon_fail.png' style='height:1em' title='Error: Credit Card Number requires a value.'>";
+		document.getElementById("fb-ccnumber").innerHTML = "<img class='formicon' src='img/icon_fail.png' title='Error: Credit Card Number requires a value.'>";
 	}
 	else
 	{
-		document.getElementById("fb-ccnumber").innerHTML = "<img src='img/icon_pass.png' style='height:1em'>";
+		document.getElementById("fb-ccnumber").innerHTML = "<img class='formicon' src='img/icon_pass.png' title='Passed Validation'>";
 	}
 	if (targForm.ccexpiry.value == "")
 	{
 		errorFlag = true;
-		document.getElementById("fb-ccexpiry").innerHTML = "<img src='img/icon_fail.png' style='height:1em' title='Error: Credit Card Expiry requires a value.'>";
+		document.getElementById("fb-ccexpiry").innerHTML = "<img class='formicon' src='img/icon_fail.png' title='Error: Credit Card Expiry requires a value.'>";
 	}
 	else
 	{
-		document.getElementById("fb-ccexpiry").innerHTML = "<img src='img/icon_pass.png' style='height:1em'>";
+		document.getElementById("fb-ccexpiry").innerHTML = "<img class='formicon' src='img/icon_pass.png' title='Passed Validation'>";
 	}
 	console.log("errorFlag=" + errorFlag);
 	return (errorFlag === false && confirm("Are you sure you want to submit registration?"));

@@ -11,18 +11,46 @@ require("db.php");
 print ("<main>");
 if (isset($_POST['gobutton']))
 {
+	$customerid = NULL;
 	foreach($_POST as $field=>$value)
 	{
-		print("<p>$field=$value</p>");
+		print("$field=$value<br />");
 	}
 	if (isset($_POST['custfirstname'],$_POST['custlastname'],$_POST['custaddress'],$_POST['custcity'],$_POST['custprov'],$_POST['custcountry'],$_POST['custpostal'],$_POST['custhomephone'],$_POST['custbusphone'],$_POST['custemail']))
 	{
-		print "<p>All required information present, uploading to database.</p>";
+		print("<p>All customer information present, uploading to database.</p>");
+		$custfirstname = preg_replace('/[^a-zA-Z]/', '', $_POST['custfirstname']);
+		$custlastname = preg_replace('/[^a-zA-Z]/', '', $_POST['custlastname']);
+		$custaddress = preg_replace('/[^a-zA-Z0-9 #,.-]/', '', $_POST['custaddress']);
+		$custcity = preg_replace('/[^a-zA-Z ]/', '', $_POST['custcity']);
+		$custprov = preg_replace('/[^a-zA-Z]/', '', $_POST['custprov']);
+		$custcountry = preg_replace('/[^a-zA-Z]/', '', $_POST['custcountry']);
+		$custpostal = preg_replace('/[^a-zA-Z0-9 ]/', '', $_POST['custpostal']);
+		$custhomephone = preg_replace('/[^0-9]/', '', $_POST['custhomephone']);
+		$custbusphone = preg_replace('/[^0-9]/', '', $_POST['custbusphone']);
+		$custemail = preg_replace('/[^a-zA-Z0-9 @._-]/', '', $_POST['custemail']);
 		/* This is only temporary, replace it with prepared statements and proper input sanitation. */
-		$sql = "INSERT INTO `customers` (`CustomerId`, `CustFirstName`, `CustLastName`, `CustAddress`, `CustCity`, `CustProv`, `CustCountry`, `CustPostal`, `CustHomePhone`, `CustBusPhone`, `CustEmail`, `AgentId`) VALUES (NULL, '{$_POST['custfirstname']}', '{$_POST['custlastname']}', '{$_POST['custaddress']}', '{$_POST['custcity']}', '{$_POST['custprov']}', '{$_POST['custcountry']}', '{$_POST['custpostal']}', '{$_POST['custhomephone']}', '{$_POST['custbusphone']}', '{$_POST['custemail']}', NULL);";
+		$sql = "INSERT INTO `customers` (`CustomerId`, `CustFirstName`, `CustLastName`, `CustAddress`, `CustCity`, `CustProv`, `CustCountry`, `CustPostal`, `CustHomePhone`, `CustBusPhone`, `CustEmail`, `AgentId`) VALUES (NULL, '$custfirstname', '$custlastname', '$custaddress', '$custcity', '$custprov', '$custcountry', '$custpostal', '$custhomephone', '$custbusphone', '$custemail', NULL);";
+		print("<p>Query: $sql</p>");
 		$result = mysqli_query($con, $sql) or die('Query Failed: ' . mysqli_error($con));
-		print "<p>$result</p>";
+		print("<p>Result: $result</p>");
+		$customerid = mysqli_insert_id($con);
+		print "<p>Successfully added new customer #$customerid.</p>";
+		//mysqli_free_result($result);
 	}
+	if ($customerid != NULL && isset($_POST['ccname'],$_POST['ccnumber'],$_POST['ccexpiry']))
+	{
+		print("<p>All payment information present, uploading to database.</p>");
+		$ccname = preg_replace('/[^a-zA-Z]/', '', $_POST['ccname']);
+		$ccnumber = preg_replace('/[^0-9]/', '', $_POST['ccnumber']);
+		$ccexpiry = preg_replace('/[^0-9-]/', '', $_POST['ccexpiry']) . "-00";
+		$sql = "INSERT INTO `creditcards` (`CreditCardId`, `CCName`, `CCNumber`, `CCExpiry`, `CustomerId`) VALUES (NULL, '$ccname', '$ccnumber', '$ccexpiry', $customerid);";
+		print("<p>Query: $sql</p>");
+		$result = mysqli_query($con, $sql) or die('Query Failed: ' . mysqli_error($con));
+		print("<p>Result: $result</p>");
+		//mysqli_free_result($result);
+	}
+	mysqli_close($con);
 }
 else
 {
@@ -55,19 +83,19 @@ print("<article>
 <table>
 <tr><td><label for='custfirstname'>First Name:</label></td>
 	<td><input type='text' name='custfirstname' onFocus='showHint(this.name);' onBlur='hideHint(this.name);' /></td>
-	<td id='fi-custfirstname'><img src='img/icon_info.png' style='height:1em' title='Customers First Name'></td>
+	<td id='fi-custfirstname'><img class='formicon' src='img/icon_info.png' title='Customers First Name'></td>
 	<td id='fb-custfirstname'></td></tr>
 <tr><td><label for='custlastname'>Last Name:</label></td>
 	<td><input type='text' name='custlastname' onFocus='showHint(this.name);' onBlur='hideHint(this.name);' /></td>
-	<td id='fi-custlastname'><img src='img/icon_info.png' style='height:1em' title='Customers Last Name'></td>
+	<td id='fi-custlastname'><img class='formicon' src='img/icon_info.png' title='Customers Last Name'></td>
 	<td id='fb-custlastname'></td></tr>
 <tr><td><label for='custaddress'>Address:</label></td>
 	<td><input type='text' name='custaddress' onFocus='showHint(this.name);' onBlur='hideHint(this.name);' /></td>
-	<td id='fi-custaddress'><img src='img/icon_info.png' style='height:1em' title='Customers Address'></td>
+	<td id='fi-custaddress'><img class='formicon' src='img/icon_info.png' title='Customers Address'></td>
 	<td id='fb-custaddress'></td></tr>
 <tr><td><label for='custcity'>City:</label></td>
 	<td><input type='text' name='custcity' onFocus='showHint(this.name);' onBlur='hideHint(this.name);' /></td>
-	<td id='fi-custcity'><img src='img/icon_info.png' style='height:1em' title='Customers Home City'></td>
+	<td id='fi-custcity'><img class='formicon' src='img/icon_info.png' title='Customers Home City'></td>
 	<td id='fb-custcity'></td></tr>
 <tr><td><label for='custprov'>Province:</label></td>
 	<td><select name='custprov' onFocus='showHint(this.name);' onBlur='hideHint(this.name);'>
@@ -86,7 +114,7 @@ print("<article>
 	<option value='SK'>Saskatchewan</option>
 	<option value='YT'>Yukon</option>
 	</select></td>
-	<td id='fi-custprov'><img src='img/icon_info.png' style='height:1em' title='Customers Home Province'></td>
+	<td id='fi-custprov'><img class='formicon' src='img/icon_info.png' title='Customers Home Province'></td>
 	<td id='fb-custprov'></td></tr>
 <tr><td><label for='custcountry'>Country:</label></td>
 	<td><select name='custcountry' onFocus='showHint(this.name);' onBlur='hideHint(this.name);'>
@@ -94,29 +122,29 @@ print("<article>
 	<option value='CA'>Canada</option>
 	<option value='US'>United States of America</option>
 	</select></td>
-	<td id='fi-custcountry'><img src='img/icon_info.png' style='height:1em' title='Customers Home Country'></td>
+	<td id='fi-custcountry'><img class='formicon' src='img/icon_info.png' title='Customers Home Country'></td>
 	<td id='fb-custcountry'></td></tr>
 <tr><td><label for='custpostal'>Postal Code:</label></td>
 	<td><input type='text' name='custpostal' 
 	maxlength='7'
 	onChange='this.value = this.value.toUpperCase();'
 	onFocus='showHint(this.name);' onBlur='hideHint(this.name);' /></td>
-	<td id='fi-custpostal'><img src='img/icon_info.png' style='height:1em' title='Customers Postal Code'></td>
+	<td id='fi-custpostal'><img class='formicon' src='img/icon_info.png' title='Customers Postal Code'></td>
 	<td id='fb-custpostal'></td></tr>
 <tr><td><label for='custhomephone'>Home Phone:</label></td>
 	<td><input type='text' name='custhomephone' 
 	onFocus='showHint(this.name);' onBlur='hideHint(this.name);' /></td>
-	<td id='fi-custhomephone'><img src='img/icon_info.png' style='height:1em' title='Customers Home Phone'></td>
+	<td id='fi-custhomephone'><img class='formicon' src='img/icon_info.png' title='Customers Home Phone'></td>
 	<td id='fb-custhomephone'></td></tr>
 <tr><td><label for='custbusphone'>Work Phone:</label></td>
 	<td><input type='text' name='custbusphone' 
 	onFocus='showHint(this.name);' onBlur='hideHint(this.name);' /></td>
-	<td id='fi-custbusphone'><img src='img/icon_info.png' style='height:1em' title='Customers Work Phone'></td>
+	<td id='fi-custbusphone'><img class='formicon' src='img/icon_info.png' title='Customers Work Phone'></td>
 	<td id='fb-custbusphone'></td></tr>
 <tr><td><label for='custemail'>E-mail Address:</label></td>
 	<td><input type='text' name='custemail' 
 	onFocus='showHint(this.name);' onBlur='hideHint(this.name);' /></td>
-	<td id='fi-custemail'><img src='img/icon_info.png' style='height:1em' title='Customers E-mail Address'></td>
+	<td id='fi-custemail'><img class='formicon' src='img/icon_info.png' title='Customers E-mail Address'></td>
 	<td id='fb-custemail'></td></tr>
 <tr><td><label for='destination'>Destination:</label></td>
 	<td><select name='destination' onFocus='showHint(this.name);' onBlur='hideHint(this.name);'>
@@ -126,7 +154,7 @@ print("<article>
 		print("<option value='$key'" . (isset($_GET['packageID']) && $_GET['packageID'] == $key ? " selected" : NULL) . ">$val</option>");
 	}
 print ("</select></td>
-	<td id='fi-destination'><img src='img/icon_info.png' style='height:1em' title='Travel Destination'></td>
+	<td id='fi-destination'><img class='formicon' src='img/icon_info.png' title='Travel Destination'></td>
 	<td id='fb-destination'></td></tr>
 <tr><td><label for='ccname'>Method of Payment:</label></td>
 	<td>
@@ -135,18 +163,18 @@ print ("</select></td>
 	<input type='radio' name='ccname' value='MC' onFocus='showHint(this.name);' onBlur='hideHint(this.name);'><img src='img/card_mast.png' alt='MasterCard' /></input>
 	<input type='radio' name='ccname' value='VISA' onFocus='showHint(this.name);' onBlur='hideHint(this.name);'><img src='img/card_visa.png' alt='Visa' /></input>
 	</td>
-	<td id='fi-ccname'><img src='img/icon_info.png' style='height:1em' title='Credit Card Provider'></td>
+	<td id='fi-ccname'><img class='formicon' src='img/icon_info.png' title='Credit Card Provider'></td>
 	<td id='fb-ccname'></td>
 	</tr>
 <tr><td><label for='ccnumber'>Card Number:</label></td>
 	<td><input type='text' name='ccnumber' 
 	onFocus='showHint(this.name);' onBlur='hideHint(this.name);' /></td>
-	<td id='fi-ccnumber'><img src='img/icon_info.png' style='height:1em' title='Credit Card Number'></td>
+	<td id='fi-ccnumber'><img class='formicon' src='img/icon_info.png' title='Credit Card Number'></td>
 	<td id='fb-ccnumber'></td></tr>
 <tr><td><label for='ccexpiry'>Expiration:</label></td>
-	<td><input type='date' name='ccexpiry' 
+	<td><input type='month' name='ccexpiry' 
 	onFocus='showHint(this.name);' onBlur='hideHint(this.name);' /></td>
-	<td id='fi-ccexpiry'><img src='img/icon_info.png' style='height:1em' title='Credit Card Expiration'></td>
+	<td id='fi-ccexpiry'><img class='formicon' src='img/icon_info.png' title='Credit Card Expiration'></td>
 	<td id='fb-ccexpiry'></td></tr>
 <tr><td align='center'><input type='reset' name='rsbutton' value='Reset Form' onClick='return confirm(\"Are you sure you want to reset form?\");' /></td>
 	<td align='center'><input type='submit' name='gobutton' value='Submit Registration' onClick='return checkForm();' /></td><td></td></tr>
