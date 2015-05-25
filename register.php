@@ -26,6 +26,14 @@ if (isset($_POST['gobutton']))
 }
 else
 {
+	$sql = 'SELECT `PackageId`, `PkgName` FROM `packages`;';
+	$result = mysqli_query($con, $sql) or die('Query Failed: ' . mysqli_error($con));
+	$packList = Array();
+	while($row = mysqli_fetch_array($result)) {
+		$packList[$row['PackageId']] = $row['PkgName'];
+	}
+	mysqli_free_result($result);
+	mysqli_close($con);
 /*
 <p id='fh-custfirstname' class='formHint'>Customer's First Name.</p>
 <p id='fh-custlastname' class='formHint'>Customer's Last Name.</p>
@@ -112,12 +120,12 @@ print("<article>
 	<td id='fb-custemail'></td></tr>
 <tr><td><label for='destination'>Destination:</label></td>
 	<td><select name='destination' onFocus='showHint(this.name);' onBlur='hideHint(this.name);'>
-	<option value=''>---- Go To ----</option>
-	<option value='cancun'>Cancun</option>
-	<option value='hawaii'>Hawaii</option>
-	<option value='leo'>Low Earth Orbit</option>
-	<option value='four'>Option 4</option>
-	</select></td>
+	<option value=''>------ Go To ------</option>");
+	foreach ($packList as $key=>$val)
+	{
+		print("<option value='$key'" . (isset($_GET['packageID']) && $_GET['packageID'] == $key ? " selected" : NULL) . ">$val</option>");
+	}
+print ("</select></td>
 	<td id='fi-destination'><img src='img/icon_info.png' style='height:1em' title='Travel Destination'></td>
 	<td id='fb-destination'></td></tr>
 <tr><td><label for='ccname'>Method of Payment:</label></td>

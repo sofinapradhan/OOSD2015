@@ -5,5 +5,5 @@
 input[type="text"],input[type="date"],input[type="submit"],input[type="reset"],select {background-color:#7F9FBF;font-family:"Courier New",Courier,monospace;}
 input[type="text"],input[type="date"],select {width:17em;}
 input[type="submit"],input[type="reset"] {width:12em;}
-
+label {color:#7F9FBF;}
 /*.formHint {position:absolute;top:8em;left:10em;visibility:hidden;}*/
