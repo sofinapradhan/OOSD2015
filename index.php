@@ -28,20 +28,17 @@ include "header.php";
 
 				<!-- Get the packages from the database to populate the selection table -->
 				<?php
-				// write query - $sql: selecting PkgName from Packages tables
-				$sql = "SELECT PkgName FROM Packages"; 
+				// write query - $sql: selecting from Packages tables
+				$sql = "SELECT PackageId,PkgName FROM Packages"; 
 				//execute query or die
 				$result = mysqli_query($con, $sql) or die("Error: " . mysqli_error($con)); 
 		
 				// Fetch result row as an associative array
 				//mysqli_fetch_assoc will return NULL and break out of loop 
 				//when there are no more rows
-				while ($row=mysqli_fetch_assoc($result)){
-	
-				foreach ($row as $index=>$col) //Loop through the vacation packages in the array
-	 				 { //print select options of packages to HTML
-	 			     print("<option value=".$col.">".$col."</option>");
-					 }
+				while ($row=mysqli_fetch_assoc($result)){ 
+
+				print("<option value=".$row["PackageId"].">".$row["PkgName"]."</option>");
 
 					}
 				// Free result set
@@ -52,48 +49,44 @@ include "header.php";
 
 				</select><br />
 
-				<label for="date">When would you like to travel?</label>
+				<label for="month">When would you like to travel?</label>
 
 				<select onchange="top.location.href = 'packages.php?month='+ this.options[ this.selectedIndex ].value" >
 				<option value="" disabled selected>Choose by Month</option>
-				<option value="January">January</option>
-				<option value="February">February</option>
-				<option value="March">March</option>
-				<option value="April">April</option>
-				<option value="May">May</option>
-				<option value="June">June</option>
-				<option value="July">July</option>
-				<option value="August">August</option>
-				<option value="September">September</option>
-				<option value="Ocotber">October</option>
-				<option value="November">November</option>
-				<option value="December">December</option>
+				<option value="1">January</option>
+				<option value="2">February</option>
+				<option value="3">March</option>
+				<option value="4">April</option>
+				<option value="5">May</option>
+				<option value="6">June</option>
+				<option value="7">July</option>
+				<option value="8">August</option>
+				<option value="9">September</option>
+				<option value="10">October</option>
+				<option value="11">November</option>
+				<option value="12">December</option>
 				</select><br />
 
 				<label for="vacationType">What type of vacation would you prefer?</label>
 				<select onchange="top.location.href = 'packages.php?type='+ this.options[ this.selectedIndex ].value" >
 				<option value="" disabled selected>Choose by Vacation Type</option>
 				<option value="Cruise">Cruise</option>
-				<option value="AllInclusive">All inclusive resort</option>
-				<option value="EcoTour">Eco tour</option>
-				<option value="RailTour">Rail tour</option>
+				<option value="Inclusive">All inclusive resort</option>
+				<option value="Eco">Eco tour</option>
+				<option value="Rail">Rail tour</option>
 				</select><br />
+				</form>
 
-				<label for="budget">What is your vacation budget?</label>
-				<p id="sliderText">start at $2800
-				<input id="budget" style="display: inline; width:40%; margin-left:5%; margin-right:5%;" 
-				type="range"  name="budget" min="0" max="3" onchange="top.location.href = 'packages.php?budget='+ (this.value)" 
-				list="budgetTypes" value="0">
-				<!--Linked the input element to a datalist with string values via list attribute -->
-				<datalist id="budgetTypes">
-				<option value="0" disabled selected></option>
-				<option value="1">save</option>
-				<option value="2">best value</option>
-				<option value="3">splurge</option>
-				</datalist>
-				</input>$4800</p>
-						
-			</form>
+				<label for="budget">What is your maximum budget?</label>
+				<p id="sliderText">$0
+				<input id="budget" style="display: inline; width:40%; margin-left:5%; margin-right:5%;" type="range" 
+				step="1000" name="budget" min="0" max="5000" list="steplist" value="3000" 
+				onchange="document.getElementById('budgetValue').innerHTML = this.value;">
+				
+				</input>$5000</p>
+
+				<button id="budgetValue" value="3000"
+				onclick="top.location.href = 'packages.php?budget='+document.getElementById('budgetValue').innerHTML">3000</button>
 	</section>
 	</div>
 		<!-- Wrapper for the carousel-->
