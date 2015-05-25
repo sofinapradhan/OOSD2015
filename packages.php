@@ -7,26 +7,23 @@
 	
 	print ("<main>");
 
-	$packageID = 1;
 	include("package_functions.php");
 ?>
 	
 	<div class='package-mini'>
 		<table>
-			<tr><td>
 			<?php selectPackagesMini(); ?>
-			</td></tr>
 		</table>
 	</div>
 
-
 	<?php
-		if($_GET){
-			if(isset($_GET['packageID'])){
-			selectPackages($_GET['packageID']);
-			}
+		// Check if package details button was clicked and show that package
+		if(isset($_POST['packageID']))
+		{
+			selectPackages($_POST['packageID']);
 		}
 	?>	
+
 	
 
 <?php
