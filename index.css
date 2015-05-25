@@ -195,3 +195,52 @@ border: groove rgba(182, 239, 210, 0.4);
 border-radius: 0.9375em;
 text-align: center;
 }
+
+
+/*Range input for budget on front page */
+input[type=range]{
+    -webkit-appearance: none;
+    background: rgba(0, 153, 153, 0);
+
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 200px;
+    height: 3px;
+    background: rgba(255, 194, 102, 0.4);
+    border: none;
+    border-radius: 3px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background: #cf6227;
+   background: -webkit-gradient(linear, left top, left bottom, from(#ffb700), to(#cf6227));
+   background: -webkit-linear-gradient(top, #ffb700, #cf6227);
+   background: -moz-linear-gradient(top, #ffb700, #cf6227);
+   background: -ms-linear-gradient(top, #ffb700, #cf6227);
+   background: -o-linear-gradient(top, #ffb700, #cf6227);
+   background-image: -ms-linear-gradient(top, #ffb700 0%, #cf6227 100%);
+    margin-top: -4px;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #FFB84D;
+}
+
+#sliderText{
+
+font-weight: bold;
+color:#FFC266 ;
+text-shadow: 0em 0.125em 0.1875em #472B00;
+margin-top: 2%;
+   font-size: 1em;
+}
