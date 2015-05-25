@@ -11,8 +11,9 @@
 	}
 	
 		
-	function showImageMini($id)
+	// Used on vacation.php to show expanded mini image 
+	var myPkgName = []; 
+	function showImageMini(myPkgIndex)
 	{
-		document.getElementById("img-pack-mini").src="img/pack_" + "asian" + $id + ".jpg";
+		document.getElementById("img-pack-main").src="img/pack_" + myPkgIndex + ".jpg";
 	}
-
