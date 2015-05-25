@@ -21,24 +21,27 @@ include "header.php";
 
 				<option value="" disabled selected>Choose by Package Name</option>
 				
-				<!-- Get the packages from the database to populate the selection table -->
+				<!-- connect to the database-->
 				<?php
 				include "db.php";
 				?>
 
-				<!-- Execute query  -->
+				<!-- Get the packages from the database to populate the selection table -->
 				<?php
-				// write query - $sql: selecting from Packages tables
+				// write query - $sql: selecting PkgName from Packages tables
 				$sql = "SELECT PkgName FROM Packages"; 
-				//execute query 
+				//execute query or die
 				$result = mysqli_query($con, $sql) or die("Error: " . mysqli_error($con)); 
 		
-				// Associative array
+				// Fetch result row as an associative array
+				//mysqli_fetch_assoc will return NULL and break out of loop 
+				//when there are no more rows
 				while ($row=mysqli_fetch_assoc($result)){
 	
-				foreach ($row as $index=>$col) //$index is the indexof each $row element
+				foreach ($row as $index=>$col) //Loop through the vacation packages in the array
+	 				 { //print select options of packages to HTML
 	 				 {
-	 			     print("<option value=".$row[$index].">".$col."</option>");
+	 			     print("<option value=".$col.">".$col."</option>");
 					 }
 
 					}
@@ -77,14 +80,19 @@ include "header.php";
 				<option value="RailTour">Rail tour</option>
 				</select><br />
 
-				<label for="vacationType">What is your vacation budget?</label>
-				<input style="width:60%; margin-left: 20%;" type="range"  name="budget" min="1" max="3" onchange="top.location.href = 'packages.php?budget='+ (this.value)" list="budgetTypes">
+				<label for="budget">What is your vacation budget?</label>
+				<p id="sliderText">start at $2800
+				<input id="budget" style="display: inline; width:40%; margin-left:5%; margin-right:5%;" 
+				type="range"  name="budget" min="0" max="3" onchange="top.location.href = 'packages.php?budget='+ (this.value)" 
+				list="budgetTypes" value="0">
+				<!--Linked the input element to a datalist with string values via list attribute -->
 				<datalist id="budgetTypes">
-				<option value="low">save</option>
-				<option value="medium">best value</option>
-				<option value="high">splurge</option>
+				<option value="0" disabled selected></option>
+				<option value="1">save</option>
+				<option value="2">best value</option>
+				<option value="3">splurge</option>
 				</datalist>
-				</input>
+				</input>$4800</p>
 						
 			</form>
 	</section>
@@ -100,55 +108,46 @@ include "header.php";
 				    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 				    <li data-target="#myCarousel" data-slide-to="1"></li>
 				    <li data-target="#myCarousel" data-slide-to="2"></li>
-				    <li data-target="#myCarousel" data-slide-to="3"></li>
-				    <li data-target="#myCarousel" data-slide-to="4"></li>    
+				    <li data-target="#myCarousel" data-slide-to="3"></li>   
   				</ol>
 
   
 				<div class="carousel-inner" role="listbox">
 					<div class="item active">
-					    <img src="img/Italy.jpg" alt="Italy">
+					    <img src="img/promo1.jpg" alt="promo1">
 					       <div class="carousel-caption">
-      					 		<h3>Italy Awaits!</h3>
-					        	<p><span style="font-size: 2.5em"> Limited Time Offer</span></p>
-					        	<p><a class="carButton" href="contact.php" role="carButton">Contact Us for Details</a></p>
-					      </div> <!--close carousel-caption class div-->
+					        	<p><a class="carButton" href="promos.php#promo1" role="carButton">Contact Us for Details</a></p>
+					       </div> <!--close carousel-caption class div-->
+						<h3>Enjoy the Sand...On Us!</h3>
+						<p>Limited Time Offer</p>
 					</div><!--close item class div-->
 
 					<div class="item">
-					    <img src="img/cabin.jpg" alt="Cabin in the Rockies">
+					    <img src="img/promo2.jpg" alt="promo2">
 					    	<div class="carousel-caption">
-      							<h3>Your Weekend Getaway</h3>
-					     	   <p><span style="font-size: 2.5em">4th Night FREE</span></p>
-					     	   <p><a class="carButton" href="contact.php" role="carButton">Contact Us for Details</a></p>
+					     	   <p><a class="carButton" href="promos.php#promo2" role="carButton">Contact Us for Details</a></p>
 					     	</div><!--close carousel-caption class div-->
+					     	<h3>Your Destination Wedding</h3>
+					     	<p>Bring Your Loved Ones</p>
 					</div><!--close item class div-->
 
 					<div class="item">
-					    <img src="img/japan.jpg" alt="Japan">
+					    <img src="img/promo3.jpg" alt="promo3">
 					     	<div class="carousel-caption">
-      					 		<h3>Culinary Adventure in Japan</h3>
-					     	   <p><span style="font-size: 2.5em">Coming SOON</span></p>
-					     	   <p><a class="carButton" href="contact.php" role="carButton">Contact Us for Details</a></p>
+					     	   <p><a class="carButton" href="promos.php#promo3" role="carButton">Contact Us for Details</a></p>
 					     	</div><!--close carousel-caption class div-->
+					     	<h3>Bring Your Friends</h3>
+					     	<p>The More The Merrier</p>
 					</div><!--close item class div-->
 
 					<div class="item">
-						<img src="img/train.jpg" alt="Rail tour">
-					    	<div class="carousel-caption">
-      							<h3>Canadian Railway Tour</h3>
-					        	<p><span style="font-size: 2.5em">Save 15% by booking TODAY</span></p>
-					        	<p><a class="carButton" href="contact.php" role="carButton">Contact Us for Details</a></p>
-								</div><!--close carousel-caption class div-->
-					</div><!--close item class div-->
-
-					<div class="item">
-						<img src="img/kenya.jpg" alt="Kenya">
-					    	<div class="carousel-caption">
-      							<h3>Kenya and Tanzania Safari</h3>
-					        	<p><span style="font-size: 2.5em">The Ultimate Safari Tour</span></p>
-					        	<p><a class="carButton" href="contact.php" role="carButton">Contact Us for Details</a></p>
-								</div><!--close carousel-caption class div-->
+						<img src="img/promo4.jpg" alt="promo4">
+					    	<div  class="carousel-caption">
+					        	<p><a class="carButton" href="promos.php#promo4" role="carButton">Contact Us for Details</a></p>
+					        </div><!--close carousel-caption class div-->	
+					        <h3>Hotel Promotions</h3>
+					     	<p>Become a VIP today</p>
+							
 					</div><!--close item class div-->
 
    				</div> <!-- div for carousel-inner -->
