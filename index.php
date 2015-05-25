@@ -40,7 +40,6 @@ include "header.php";
 	
 				foreach ($row as $index=>$col) //Loop through the vacation packages in the array
 	 				 { //print select options of packages to HTML
-	 				 {
 	 			     print("<option value=".$col.">".$col."</option>");
 					 }
 
