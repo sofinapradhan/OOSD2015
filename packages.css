@@ -1,4 +1,5 @@
 
+
 /* Packages section */
 
 main {
@@ -20,15 +21,36 @@ button {
 	min-width: 480px;
 }
 
-.package-main img {
-	float: left;
-	width: 100%;
-	max-width: 600px;
-	max-height: 400px;
-}
-
 .package-main h1 {
 	color: #FFC266;
+}
+
+.package-main dl {
+	width: 100%;
+	overflow: hidden;
+}
+
+.package-main dt {
+	float: left;
+	width: 40%;
+}
+
+.package-main dd {
+	float: left;
+	width: 40%;
+}
+
+#img-pack-main {
+	float: left;
+	width: 100%;
+	height: 400px;
+	width: 600px;
+}
+
+#img-pack-mini {
+	height: 120px;
+	width: 240px;
+	margin-right: 1em;
 }
 
 #img-pack-micro {
@@ -44,17 +66,27 @@ button {
 	color: white;
 	float: left;
 	margin-top: 1em;
-	margin-left: 2em;
+	margin-left: 1em;
 	min-width: 320px;
+	width: 44%;
 }
 
 .package-mini h2 {
 	color: #FFC266;
 }
 
-.package-mini img {
+.package-mini dl {
+	width: 100%;
+	overflow: hidden;
+	display: inline; 
+}
+
+.package-mini dt {
 	float: left;
-	margin-right: 1em;
-	width: 34%;
-	min-width: 220px;
+	width: 90%;
+}
+
+.package-mini dd {
+	float: left;
+	width: 40%;
 }
