@@ -45,11 +45,11 @@
 				$sql .= " AND PackageId = " . $_GET['findRegion'] ;
 			}
 			
-			// Check findMonth 0-11 
-			if (!empty($_GET['findMonth']))
+			// Check month 0-11 
+			if (!empty($_GET['month']))
 			{
 				// Set date based on if month has passed this year or not
-				if ($_GET["findMonth"] < date("m") )
+				if ($_GET["month"] < date("m") )
 				{ 
 					$year = date("Y") + 1;
 				}
@@ -58,21 +58,21 @@
 					$year = date("Y");
 				}
 				// Set format of myDate to format used in MySQL
-				$myDate = $year . "-" . $_GET['findMonth'] . "-01 00:00:00";
+				$myDate = $year . "-" . $_GET['month'] . "-01 00:00:00";
 				
 				$sql .= " AND PkgStartDate < '" . $myDate ."'"; 
 			}
 			
-			// Check findType Cruise Inclusive Eco Rail	
-			if (!empty($_GET['findType']))
+			// Check Type Cruise Inclusive Eco Rail	
+			if (!empty($_GET['Type']))
 			{
-				$sql .= " AND PkgDesc LIKE '%" . $_GET['findType'] . "%'";
+				$sql .= " AND PkgDesc LIKE '%" . $_GET['Type'] . "%'";
 			}
 			
-			// Check findCost *1000	
-			if (!empty($_GET['findCost']))
+			// Check budget *1000	
+			if (!empty($_GET['budget']))
 			{
-				$cost = $_GET['findCost'] * 1000;
+				$cost = $_GET['budget'] * 1000;
 				$sql .= " AND (PkgBasePrice + PkgAgencyCommission) < " . $cost ;
 			}
 			
@@ -230,6 +230,5 @@
 		
 		mysqli_close($dbh);
 	}
-
 
 ?>
