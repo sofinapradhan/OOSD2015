@@ -1,16 +1,5 @@
 <?php
 
-/*
-You will need to use the following tables to enhance the web pages you developed earlier:
-1.	Packages
-2.	Products
-3.	Packages_products
-4.	Agencies
-5.	Agents
-6.	Customers
-7.	Bookings
-*/
-
 	// Move this to variables.php or db
 	$packageText = array(
 		"Travel Experts"  => "Welcome to Travel Experts",
@@ -36,24 +25,28 @@ You will need to use the following tables to enhance the web pages you developed
 		return ($myDate);
 	}
 	
-	// 
+	// List all packages from search
 	function selectPackagesMini()
 	{
+		// String to hold GET parameters for use on page reloads
+		$strGET = $_SERVER['QUERY_STRING'];
+		
 		$dbh = @mysqli_connect("localhost","root","","travelexperts") or die("SQL Error: " . mysqli_connect_error()); 
 			
 		// Use $_GET parameters from index.php search form to display packages
 		if ($_GET)
 		{
+			// Set initial SQL string
 			$sql = "SELECT * FROM Packages WHERE PackageId > 0 ";
 			
 			// Check findRegion 1-4 Caribbean Polynesia Asia Europe
-			if ($_GET["findRegion"])
+			if (!empty($_GET['findRegion']))
 			{
 				$sql .= " AND PackageId = " . $_GET['findRegion'] ;
 			}
 			
 			// Check findMonth 0-11 
-			if 	($_GET["findMonth"])
+			if (!empty($_GET['findMonth']))
 			{
 				// Set date based on if month has passed this year or not
 				if ($_GET["findMonth"] < date("m") )
@@ -71,13 +64,13 @@ You will need to use the following tables to enhance the web pages you developed
 			}
 			
 			// Check findType Cruise Inclusive Eco Rail	
-			if 	($_GET["findType"])
+			if (!empty($_GET['findType']))
 			{
 				$sql .= " AND PkgDesc LIKE '%" . $_GET['findType'] . "%'";
 			}
 			
 			// Check findCost *1000	
-			if 	($_GET["findCost"])
+			if (!empty($_GET['findCost']))
 			{
 				$cost = $_GET['findCost'] * 1000;
 				$sql .= " AND (PkgBasePrice + PkgAgencyCommission) < " . $cost ;
@@ -108,6 +101,9 @@ You will need to use the following tables to enhance the web pages you developed
 			$myDateStart = formatDate($row["PkgStartDate"]);
 			$myDateEnd = formatDate($row["PkgEndDate"]);
 			
+			// Sanitize GEt string; removw packageID=[0-9]&
+			$strGET = preg_replace("/packageID=[0-9]&/", "", $strGET, 1);
+			
 			// Compare package date to current date; only show valid packages >= current date
 			if (strtotime($row['PkgEndDate']) >= time() )
 			{
@@ -121,10 +117,7 @@ You will need to use the following tables to enhance the web pages you developed
 							<dd><div id='pack-date-end'>Returning: " . $myDateEnd . "</div><br/><br/></dd>
 						</dl>
 						<dl>
-							<dd><form method='post' action='packages.php' >
-							<input type='hidden' name='packageID' value='" . $row["PackageId"] . "'>
-							<input type='submit' class='button' value='Details' />
-							</form></dd>
+							<dd><a href='packages.php?packageID=" . $row["PackageId"] . "&" . $strGET . "'><button>Details</button></a><br/><br/></dd>
 							<dd><a href='register.php?packageID=" . $row["PackageId"] . "'><button>Book Now</button></a><br/><br/></dd>
 						</dl>
 					<br/></td>
@@ -162,20 +155,20 @@ You will need to use the following tables to enhance the web pages you developed
 	
 	
 	// Details of selected package 
-	function selectPackages($packageID)
+	function selectPackages()
 	{
 		global $packageText;
 		global $packageImage;
 		
 		$dbh = @mysqli_connect("localhost","root","","travelexperts") or die("SQL Error: " . mysqli_connect_error()); 
 	
-		if ($packageID == 0) 
+		if ($_GET['packageID'] == 0) 
 		{
 			$sql = "SELECT * FROM Packages";
 		}
 		else 
 		{
-			$sql = "SELECT * FROM Packages WHERE Packages.PackageId = $packageID";
+			$sql = "SELECT * FROM Packages WHERE Packages.PackageId = " . $_GET['packageID'] . ";";
 		}
 		
 		$result = mysqli_query($dbh, $sql) or die("Error: " . mysqli_error($dbh)); 
