@@ -39,10 +39,10 @@
 			// Set initial SQL string
 			$sql = "SELECT * FROM Packages WHERE PackageId > 0 ";
 			
-			// Check region 1-4 Caribbean Polynesia Asia Europe
-			if (!empty($_GET['region']))
+			// Check packageName 1-4 Caribbean Polynesia Asia Europe
+			if (!empty($_GET['packageName']))
 			{
-				$sql .= " AND PackageId = " . $_GET['region'] ;
+				$sql .= " AND PackageId = " . $_GET['packageName'] ;
 			}
 			
 			// Check month 0-11 
@@ -63,17 +63,16 @@
 				$sql .= " AND PkgStartDate < '" . $myDate ."'"; 
 			}
 			
-			// Check Type Cruise Inclusive Eco Rail	
-			if (!empty($_GET['Type']))
+			// Check type Cruise Inclusive Eco Rail	
+			if (!empty($_GET['type']))
 			{
-				$sql .= " AND PkgDesc LIKE '%" . $_GET['Type'] . "%'";
+				$sql .= " AND PkgDesc LIKE '%" . $_GET['type'] . "%'";
 			}
 			
 			// Check budget *1000	
 			if (!empty($_GET['budget']))
 			{
-				$cost = $_GET['budget'] * 1000;
-				$sql .= " AND (PkgBasePrice + PkgAgencyCommission) < " . $cost ;
+				$sql .= " AND (PkgBasePrice + PkgAgencyCommission) < " . $_GET['budget'] ;
 			}
 			
 			$sql .= ";";
