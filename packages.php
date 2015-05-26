@@ -18,9 +18,9 @@
 
 	<?php
 		// Check if package details button was clicked and show that package
-		if(isset($_POST['packageID']))
+		if(isset($_GET['packageID']))
 		{
-			selectPackages($_POST['packageID']);
+			selectPackages();
 		}
 	?>	
 
