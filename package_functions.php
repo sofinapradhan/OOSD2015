@@ -113,7 +113,7 @@
 						<h2 align='left'>" . $row["PkgName"] . " $" . number_format($totalPrice, 0) . "</h2>
 						<dl>
 							<dd><div class='pack-date-start" . $row["PackageId"] . "'>Departure: " . $myDateStart . "</div></dd>
-							<dd><div id='pack-date-end'>Returning: " . $myDateEnd . "</div><br/><br/></dd>
+							<dd><div id='pack-date-end'>Returning: " . $myDateEnd . "</div><br/></dd>
 						</dl>
 						<dl>
 							<dd><a href='packages.php?packageID=" . $row["PackageId"] . "&" . $strGET . "'><button>Details</button></a><br/><br/></dd>
