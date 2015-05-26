@@ -1,3 +1,9 @@
+	/* Course: CPRG 210
+	   Author: Mark Poffenroth
+	   Usage:  
+	   Function: Packages.php JS functions
+	   Date: 2015/05/25
+	*/ 
 
 	// If package start date < current date, use CSS to make start date bold and red.
 	function setColorRed(className)
@@ -11,7 +17,7 @@
 	}
 	
 		
-	// Used on vacation.php to show expanded mini image 
+	// Used on packages.php to show expanded mini image 
 	var myPkgName = []; 
 	function showImageMini(myPkgIndex)
 	{
