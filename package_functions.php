@@ -1,5 +1,12 @@
 <?php
-
+	
+	/* Course: CPRG 210
+	   Author: MPoffenroth
+	   Usage: 
+	   Function: Functions used on Travel Packages page
+	   Date: 2015/05/25
+	*/ 
+	
 	// Move this to variables.php or db
 	$packageText = array(
 		"Travel Experts"  => "Welcome to Travel Experts",
@@ -45,22 +52,10 @@
 				$sql .= " AND PackageId = " . $_GET['packageName'] ;
 			}
 			
-			// Check month 0-11 
-			if (!empty($_GET['month']))
+			// Check date start and end  
+			if ( (!empty($_GET['dateStart'])) && (!empty($_GET['dateEnd'])) )
 			{
-				// Set date based on if month has passed this year or not
-				if ($_GET["month"] < date("m") )
-				{ 
-					$year = date("Y") + 1;
-				}
-				else 
-				{ 
-					$year = date("Y");
-				}
-				// Set format of myDate to format used in MySQL
-				$myDate = $year . "-" . $_GET['month'] . "-01 00:00:00";
-				
-				$sql .= " AND PkgStartDate < '" . $myDate ."'"; 
+				$sql .= " AND PkgStartDate > '" . $_GET['dateStart'] . "' AND PkgStartDate < '" . $_GET['dateEnd'] . "'"; 
 			}
 			
 			// Check type Cruise Inclusive Eco Rail	
