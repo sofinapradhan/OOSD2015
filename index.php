@@ -49,23 +49,13 @@ include "header.php";
 
 				</select><br />
 
-				<label for="month">When would you like to travel?</label>
-
-				<select onchange="top.location.href = 'packages.php?month='+ this.options[ this.selectedIndex ].value" >
-				<option value="" disabled selected>Choose by Month</option>
-				<option value="1">January</option>
-				<option value="2">February</option>
-				<option value="3">March</option>
-				<option value="4">April</option>
-				<option value="5">May</option>
-				<option value="6">June</option>
-				<option value="7">July</option>
-				<option value="8">August</option>
-				<option value="9">September</option>
-				<option value="10">October</option>
-				<option value="11">November</option>
-				<option value="12">December</option>
-				</select><br />
+				<label for="date">When would you like to travel?</label><br />
+			
+				<input id="dateStart" type="date" placeholder="Date Range: Start"></input>
+				<input id="dateEnd" type="date" placeholder="Date Range: End"></input>
+				<button type="button"
+				onclick="top.location.href = 'packages.php?dateStart='+document.getElementById('dateStart').value+
+				'&dateEnd='+document.getElementById('dateEnd').value">Go!</button>
 
 				<label for="vacationType">What type of vacation would you prefer?</label>
 				<select onchange="top.location.href = 'packages.php?type='+ this.options[ this.selectedIndex ].value" >
