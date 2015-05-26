@@ -39,10 +39,10 @@
 			// Set initial SQL string
 			$sql = "SELECT * FROM Packages WHERE PackageId > 0 ";
 			
-			// Check findRegion 1-4 Caribbean Polynesia Asia Europe
-			if (!empty($_GET['findRegion']))
+			// Check region 1-4 Caribbean Polynesia Asia Europe
+			if (!empty($_GET['region']))
 			{
-				$sql .= " AND PackageId = " . $_GET['findRegion'] ;
+				$sql .= " AND PackageId = " . $_GET['region'] ;
 			}
 			
 			// Check month 0-11 
@@ -230,5 +230,6 @@
 		
 		mysqli_close($dbh);
 	}
+
 
 ?>
