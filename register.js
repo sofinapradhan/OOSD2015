@@ -63,13 +63,11 @@ function checkForm()
 	{
 		document.getElementById("fb-custcountry").innerHTML = "<img class='formicon' src='img/icon_pass.png' title='Passed Validation'>";
 	}
-	//var re = new RegExp(/^[A-Z]\d[A-Z]\s?\d[A-Z]\d$/i);
 	if (targForm.custpostal.value == "")
 	{
 		errorFlag = true;
 		document.getElementById("fb-custpostal").innerHTML = "<img class='formicon' src='img/icon_fail.png' title='Error: Postal Code requires a value.'>";
 	}
-	//else if (!re.test(targForm.custpost.value))
 	else if (!new RegExp(/^[A-Z]\d[A-Z]\s?\d[A-Z]\d$/i).test(targForm.custpostal.value))
 	{
 		errorFlag = true;
@@ -106,7 +104,7 @@ function checkForm()
 	{
 		document.getElementById("fb-custemail").innerHTML = "<img class='formicon' src='img/icon_pass.png' title='Passed Validation'>";
 	}
-	if (targForm.destination.value == "")
+	if (targForm.destination.value == "" || targForm.destination.value == 0)
 	{
 		errorFlag = true;
 		document.getElementById("fb-destination").innerHTML = "<img class='formicon' src='img/icon_fail.png' title='Error: Destination requires a value.'>";
@@ -114,6 +112,24 @@ function checkForm()
 	else
 	{
 		document.getElementById("fb-destination").innerHTML = "<img class='formicon' src='img/icon_pass.png' title='Passed Validation'>";
+	}
+	if (targForm.travelercount.value == "")
+	{
+		errorFlag = true;
+		document.getElementById("fb-travelercount").innerHTML = "<img class='formicon' src='img/icon_fail.png' title='Error: Traveler Count requires a value.'>";
+	}
+	else
+	{
+		document.getElementById("fb-travelercount").innerHTML = "<img class='formicon' src='img/icon_pass.png' title='Passed Validation'>";
+	}
+	if (targForm.triptype.value == "" || targForm.triptype.value == 0)
+	{
+		errorFlag = true;
+		document.getElementById("fb-triptype").innerHTML = "<img class='formicon' src='img/icon_fail.png' title='Error: Trip Type requires a value.'>";
+	}
+	else
+	{
+		document.getElementById("fb-triptype").innerHTML = "<img class='formicon' src='img/icon_pass.png' title='Passed Validation'>";
 	}
 	if (targForm.ccname.value == "")
 	{
@@ -159,6 +175,8 @@ function clearWarn()
 	document.getElementById("fb-custbusphone").innerHTML = "";
 	document.getElementById("fb-custemail").innerHTML = "";
 	document.getElementById("fb-destination").innerHTML = "";
+	document.getElementById("fb-travelercount").innerHTML = "";
+	document.getElementById("fb-triptype").innerHTML = "";
 	document.getElementById("fb-ccname").innerHTML = "";
 	document.getElementById("fb-ccnumber").innerHTML = "";
 	document.getElementById("fb-ccexpiry").innerHTML = "";
@@ -166,7 +184,6 @@ function clearWarn()
 function showHint(fieldName)
 {
 	console.log("showHint(" + fieldName + ")");
-	//document.getElementById("fb-" + fieldName).innerHTML = formHintList[fieldName];
 	document.getElementById("fh-" + fieldName).style.visibility = "visible";
 }
 function hideHint(fieldName)

@@ -18,7 +18,7 @@ if (isset($_POST['gobutton']))
 	}
 	if (isset($_POST['custfirstname'],$_POST['custlastname'],$_POST['custaddress'],$_POST['custcity'],$_POST['custprov'],$_POST['custcountry'],$_POST['custpostal'],$_POST['custhomephone'],$_POST['custbusphone'],$_POST['custemail']))
 	{
-		print("<p>All customer information present, uploading to database.</p>");
+		print("All customer information present, uploading to database.<br />");
 		$custfirstname = preg_replace('/[^a-zA-Z]/', '', $_POST['custfirstname']);
 		$custlastname = preg_replace('/[^a-zA-Z]/', '', $_POST['custlastname']);
 		$custaddress = preg_replace('/[^a-zA-Z0-9 #,.-]/', '', $_POST['custaddress']);
@@ -31,42 +31,67 @@ if (isset($_POST['gobutton']))
 		$custemail = preg_replace('/[^a-zA-Z0-9 @._-]/', '', $_POST['custemail']);
 		/* This is only temporary, replace it with prepared statements and proper input sanitation. */
 		$sql = "INSERT INTO `customers` (`CustomerId`, `CustFirstName`, `CustLastName`, `CustAddress`, `CustCity`, `CustProv`, `CustCountry`, `CustPostal`, `CustHomePhone`, `CustBusPhone`, `CustEmail`, `AgentId`) VALUES (NULL, '$custfirstname', '$custlastname', '$custaddress', '$custcity', '$custprov', '$custcountry', '$custpostal', '$custhomephone', '$custbusphone', '$custemail', NULL);";
-		print("<p>Query: $sql</p>");
+		print("<b>Query:</b> $sql<br />");
 		$result = mysqli_query($con, $sql) or die('Query Failed: ' . mysqli_error($con));
-		print("<p>Result: $result</p>");
+		print("<b>Result:</b> $result<br />");
 		$customerid = mysqli_insert_id($con);
-		print "<p>Successfully added new customer #$customerid.</p>";
+		print "Successfully added new customer #$customerid.<br />";
+		//mysqli_free_result($result);
+	}
+	if ($customerid != NULL && isset($_POST['destination'],$_POST['travelercount'],$_POST['triptype']))
+	{
+		print("All booking information present, uploading to database.<br />");
+		$packageid = preg_replace('/[^0-9]/', '', $_POST['destination']);
+		$travelercount = preg_replace('/[^0-9]/', '', $_POST['travelercount']);
+		$triptypeid = preg_replace('/[^A-Z]/', '', $_POST['triptype']);
+		$sql = "INSERT INTO `bookings` (`BookingId`, `BookingDate`, `BookingNo`, `TravelerCount`, `CustomerId`, `TripTypeId`, `PackageId`) VALUES (NULL, CURDATE(), UPPER(LEFT(UUID(), 8)), '$travelercount', $customerid, '$triptypeid', '$packageid');";
+		print("<b>Query:</b> $sql<br />");
+		$result = mysqli_query($con, $sql) or die('Query Failed: ' . mysqli_error($con));
+		print("<b>Result:</b> $result<br />");
+		$bookingid = mysqli_insert_id($con);
+		print "Successfully added new booking #$bookingid.<br />";
 		//mysqli_free_result($result);
 	}
 	if ($customerid != NULL && isset($_POST['ccname'],$_POST['ccnumber'],$_POST['ccexpiry']))
 	{
-		print("<p>All payment information present, uploading to database.</p>");
+		print("All payment information present, uploading to database.<br />");
 		$ccname = preg_replace('/[^a-zA-Z]/', '', $_POST['ccname']);
 		$ccnumber = preg_replace('/[^0-9]/', '', $_POST['ccnumber']);
 		$ccexpiry = preg_replace('/[^0-9-]/', '', $_POST['ccexpiry']) . "-00";
 		$sql = "INSERT INTO `creditcards` (`CreditCardId`, `CCName`, `CCNumber`, `CCExpiry`, `CustomerId`) VALUES (NULL, '$ccname', '$ccnumber', '$ccexpiry', $customerid);";
-		print("<p>Query: $sql</p>");
+		print("<b>Query:</b> $sql<br />");
 		$result = mysqli_query($con, $sql) or die('Query Failed: ' . mysqli_error($con));
-		print("<p>Result: $result</p>");
+		print("<b>Result:</b> $result<br />");
+		$creditcardid = mysqli_insert_id($con);
+		print "Successfully added new card #$creditcardid.<br />";
 		//mysqli_free_result($result);
 	}
 	mysqli_close($con);
 }
 else
 {
-	$sql = 'SELECT `PackageId`, `PkgName`, `PkgBasePrice` FROM `packages`;';
-	$result = mysqli_query($con, $sql) or die('Query Failed: ' . mysqli_error($con));
 	$packList = Array('------ Go To ------');
 	$costList = Array('N/A');
+	$typeList = Array('TripType');
+	// Populate $packList and $costList from DB.
+	$sql = 'SELECT `PackageId`, `PkgName`, (`PkgBasePrice`+`PkgAgencyCommission`) AS `PkgPrice` FROM `packages`;';
+	$result = mysqli_query($con, $sql) or die('Query Failed: ' . mysqli_error($con));
 	while($row = mysqli_fetch_array($result)) {
 		$packList[$row['PackageId']] = $row['PkgName'];
-		$costList[$row['PackageId']] = "\$" . substr($row['PkgBasePrice'],0,-2);
+		$costList[$row['PackageId']] = "\$" . substr($row['PkgPrice'],0,-2);
+	}
+	mysqli_free_result($result);
+	// Populate $typeList from DB.
+	$sql = 'SELECT `TripTypeId`, `TTName` FROM `triptypes`;';
+	$result = mysqli_query($con, $sql) or die('Query Failed: ' . mysqli_error($con));
+	while($row = mysqli_fetch_array($result)) {
+		$typeList[$row['TripTypeId']] = $row['TTName'];
 	}
 	mysqli_free_result($result);
 	mysqli_close($con);
 	print("<script>
 	costList = ['" . implode("','", $costList) . "'];
-	function showCost(key)
+	function viewCost(key)
 	{
 		document.getElementById('formCost').innerHTML = costList[key];
 	}
@@ -158,7 +183,7 @@ print("<article>
 	<td id='fb-custemail'></td></tr>
 <tr><th colspan=2'>Package Information</th><th></th><th></th></tr>
 <tr><td><label for='destination'>Destination:</label></td>
-	<td><select name='destination' onFocus='showHint(this.name);' onBlur='hideHint(this.name);' onChange='showCost(this.value);'>");
+	<td><select name='destination' onFocus='showHint(this.name);' onBlur='hideHint(this.name);' onChange='viewCost(this.value);'>");
 	foreach ($packList as $key=>$val)
 	{
 		print("<option value='$key'" . (isset($_GET['packageID']) && $_GET['packageID'] == $key ? " selected" : NULL) . ">$val</option>");
@@ -166,6 +191,20 @@ print("<article>
 print ("</select></td>
 	<td id='fi-destination'><img class='formicon' src='img/icon_info.png' title='Travel Destination'></td>
 	<td id='fb-destination'></td></tr>
+<tr><td><label for='travelercount'>Group Size:</label></td>
+	<td><input type='text' name='travelercount' 
+	onFocus='showHint(this.name);' onBlur='hideHint(this.name);' /></td>
+	<td id='fi-travelercount'><img class='formicon' src='img/icon_info.png' title='Number of Travelers'></td>
+	<td id='fb-travelercount'></td></tr>
+<tr><td><label for='triptype'>Trip Type:</label></td>
+	<td><select name='triptype' onFocus='showHint(this.name);' onBlur='hideHint(this.name);'>");
+	foreach ($typeList as $key=>$val)
+	{
+		print("<option value='$key'>$val</option>");
+	}
+print ("</select></td>
+	<td id='fi-triptype'><img class='formicon' src='img/icon_info.png' title='Type of Trip'></td>
+	<td id='fb-triptype'></td></tr>
 <tr><td>Price:</td>
 	<td><span id='formCost'>" . $costList[(isset($_GET['packageID']) ? preg_replace('/[^0-9]/','',$_GET['packageID']) : 0)] . "</span></td>
 	<td></td><td></td></tr>
