@@ -3,7 +3,7 @@
  * Date: 2015/05/25
  */
 $header_title = "Travel Experts - Promotions";
-$header_style = ["global.css"];
+$header_style = ["promos.css"];
 $header_script = [
 	"https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js",		/* jQuery library */
 	"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"];		/* Latest compiled JavaScript */
