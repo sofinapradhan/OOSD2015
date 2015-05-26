@@ -15,7 +15,7 @@ include "header.php";
 
 			<section id="promo1">
 				<h3>Book Your Next Vacation Now</h3>
-				<img src="img/promo1.jpg" alt="promo1">
+				<div class="promoImage"><img src="img/promo1.jpg" alt="promo1"></div>
 				<p>Summer is low season in the Caribbean. With low season, come low prices. <br />
 				Take <b>15%</b> off your beach vacation until August 1st. 
 				Check out our available <a href="packages.php">packages</a>!</p>
@@ -23,7 +23,7 @@ include "header.php";
 			
 			<section id="promo2">
 				<h3>Destination Weddings</h3>
-				<img src="img/promo2.jpg" alt="promo2">
+				<div class="promoImage"><img src="img/promo2.jpg" alt="promo2"></div>
 				<p>No Deposit for 3 months prior to departure for wedding groups at most resorts.</p>
 					<ul>
 					<li>Free flight upgrade</li>
@@ -35,7 +35,7 @@ include "header.php";
 
 			<section id="promo3">
 				<h3>Group Travel</h3>
-				<img src="img/promo3.jpg" alt="promo3">
+				<div class="promoImage"><img src="img/promo3.jpg" alt="promo3"></div>
 				<p>Bring your friends and your family, your neighbours and your dog!<br />
 				<ul>
 					<li>Freebies for groups at select destinations,including Food+Drinks+Activities</li>
@@ -49,15 +49,15 @@ include "header.php";
 
 			<section id="promo4">
 				<h3>Hotel Promotions</h3>
-				<img src="img/promo4.jpg" alt="promo4">
+				<div class="promoImage"><img src="img/promo4.jpg" alt="promo4"></div>
 				<p>Get exclusive offers and perks on your next vacation.
 				Earn points, get upgrades - skip the line to get the most out of your trips!</p>
-				<p> Book at:</p>
+				<p>Book at:</p>
 				<ul>
-					<li>Marriott </li>
-					<li>Hilton </li>
-					<li>Hyatt </li>
-					<li>And many, many other hotel chains!</li>
+					<li>Marriott</li>
+					<li>Hilton</li>
+					<li>Hyatt</li>
+					<li>And many other hotel chains!</li>
 				</ul>
 				<a href="contact.php">Contact our agents</a> and see what we can do for YOU!
 			</section>	
