@@ -9,11 +9,11 @@
 	
 	// Move this to variables.php or db
 	$packageText = array(
-		"Travel Experts"  => "Welcome to Travel Experts",
-		"Caribbean" => "Exchange the winter cold for the warm, sandy shores of the Caribbean - an excellent way to start off the New Year on a relaxed and cheerful note.",
-		"Polynesian" => "In Hawaii, your vacation can be whatever you want it to be. From relaxed to adventurous, from beautiful beaches to breathtaking views.",
+		"Travel Experts" => "Welcome to Travel Experts",
+		"Caribbean" => "Start off the New Year on a relaxed and cheerful note on the warm, sandy shores of the Caribbean.",
+		"Polynesian" => "In Hawaii, your vacation can be whatever you want it to be, from relaxed to adventurous.",
 		"Asian" => "Travel to Asia and experience a rich tapestry of fascinating cultures, exotic landscapes, and age-old traditions.",
-		"European" => "A European vacation is like no other. Experience a variety of cultures and famous sites as you see what this charming Old World continent has to offer."
+		"European" => "Experience a variety of cultures and famous sites as you see what this charming Old World continent has to offer."
 	);
 	
 	$packageImage = array(
@@ -130,7 +130,7 @@
 					<td>
 						<h2 align='left'>" . $row["PkgName"] . " $" . number_format($totalPrice, 0) . "</h2>
 						<dl>
-							<dt><div class='pack-date-start" . $row["PackageId"] . "'>This Vacation Package is currently unavailable</div></dt>
+							<dt><dd><div class='pack-date-start" . $row["PackageId"] . "'>This Vacation Package is currently unavailable</div></dd></dt>
 							<dd><a href='index.php'><br/><button>Search Again</button></a><br/><br/></dd>
 					<br/><br/></td>
 					</tr>
@@ -188,14 +188,10 @@
 						<table>
 							<tr><td>
 								<h2>" . $row["PkgName"] . " $" . number_format($totalPrice, 0) . "</h2>
-								<p align='left'>" . $packageText[$myPkgName] . "</p>
-								<!--
-								<p>
 								<dl><dd><div class='pack-date-start" . $row["PackageId"] . "'>Departure: " . $myDateStart . "</div></dd>
-								<dd><div class='pack-date-end'>Returning: " . $myDateEnd . "</div></dd></dl>
-								</p>
-								-->
-								<p><div>Package Includes:" . $row["PkgDesc"] . "</div></p>
+								<dd><div class='pack-date-end'>Returning: " . $myDateEnd . "</div><br/></dd></dl>
+								<div>" . $packageText[$myPkgName] . "</div>
+								<div>Package Includes: " . $row["PkgDesc"] . "</div>
 							</td></tr>
 							<tr><td>
 								<img id='img-pack-main' src='img/pack_" . $myPkgName . "0.jpg'></td></tr>
