@@ -115,12 +115,12 @@ else
 print("<article>
 <form id='regForm' name='register' method='post' action='{$_SERVER['PHP_SELF']}' onReset='clearWarn();'>
 <table>
-<tr><th colspan=2'>Customer Information</th><th></th><th></th></tr>
+<tr><th colspan=2'>Customer Information</th><th class='formicon'></th><th class='formicon'></th><th colspan=2'>Customer Information</th><th class='formicon'></th><th class='formicon'></th></tr>
 <tr><td><label for='custfirstname'>First Name:</label></td>
 	<td><input type='text' name='custfirstname' onFocus='showHint(this.name);' onBlur='hideHint(this.name);' /></td>
 	<td id='fi-custfirstname'><img class='formicon' src='img/icon_info.png' title='Customers First Name'></td>
-	<td id='fb-custfirstname'></td></tr>
-<tr><td><label for='custlastname'>Last Name:</label></td>
+	<td id='fb-custfirstname'></td>
+	<td><label for='custlastname'>Last Name:</label></td>
 	<td><input type='text' name='custlastname' onFocus='showHint(this.name);' onBlur='hideHint(this.name);' /></td>
 	<td id='fi-custlastname'><img class='formicon' src='img/icon_info.png' title='Customers Last Name'></td>
 	<td id='fb-custlastname'></td></tr>

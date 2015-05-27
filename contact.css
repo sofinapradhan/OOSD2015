@@ -1,11 +1,7 @@
  /* Written by Sofina Pradhan
     Date: 2015/05/17
  */
-    p 
-	 {
-	    color:white;
-	 }
-	 
+input,textarea,input[type="submit"],input[type="reset"] {background-color:#7F9FBF;color:#FFFFFF;font-family:"Courier New",Courier,monospace;}
 	.imgfeildset
 	{
 		position:absolute;

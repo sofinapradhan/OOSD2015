@@ -8,11 +8,16 @@
 
 main {
 	overflow-y: auto;
+	padding: 0;
 }
 
 button {
 	background: #FFC266;
 	color: #000080;
+	font-weight: 600;
+	white-space: nowrap;
+	margin-left: 2em;
+	margin-right: 2em;
 }
 
 .package-main {
@@ -23,10 +28,6 @@ button {
 	width: 44%;
 	height: 75%;
 	min-width: 480px;
-}
-
-.package-main h1 {
-	color: #FFC266;
 }
 
 .package-main dl {

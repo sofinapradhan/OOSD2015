@@ -6,7 +6,7 @@ main {color:#FFFFFF;overflow-y:auto;}
 input[type="text"],input[type="month"],input[type="submit"],input[type="reset"],select {background-color:#7F9FBF;font-family:"Courier New",Courier,monospace;}
 input[type="text"],input[type="month"],select {width:17em;}
 input[type="submit"],input[type="reset"] {width:12em;}
-label {color:#7F9FBF;}
-th {color:#7F9FBF;text-align:center;}
-.formicon {height:1.5em;}
-/*.formHint {position:absolute;top:8em;left:10em;visibility:hidden;}*/
+//label {color:#7F9FBF;}
+th {color:#7F9FBF;text-align:center;font-size:200%;}
+.formicon {height:1.5em;width:1.5em;}
+//.formHint {position:absolute;top:8em;left:10em;visibility:hidden;}

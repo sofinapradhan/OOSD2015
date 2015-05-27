@@ -187,12 +187,14 @@
 					<div class='package-main'>
 						<table>
 							<tr><td>
-								<h1>" . $row["PkgName"] . " $" . number_format($totalPrice, 0) . "</h1>
+								<h2>" . $row["PkgName"] . " $" . number_format($totalPrice, 0) . "</h2>
 								<p align='left'>" . $packageText[$myPkgName] . "</p>
+								<!--
 								<p>
 								<dl><dd><div class='pack-date-start" . $row["PackageId"] . "'>Departure: " . $myDateStart . "</div></dd>
 								<dd><div class='pack-date-end'>Returning: " . $myDateEnd . "</div></dd></dl>
 								</p>
+								-->
 								<p><div>Package Includes:" . $row["PkgDesc"] . "</div></p>
 							</td></tr>
 							<tr><td>
