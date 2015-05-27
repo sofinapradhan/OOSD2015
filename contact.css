@@ -2,28 +2,33 @@
     Date: 2015/05/17
  */
 input,textarea,input[type="submit"],input[type="reset"] {background-color:#7F9FBF;color:#FFFFFF;font-family:"Courier New",Courier,monospace;}
+
+input::-webkit-input-placeholder
+    {
+    color:white;
+    }
 	.imgfeildset
 	{
 		position:absolute;
 		top:0%;
 		height:100%;
-		width:40%;
+		width:50%;
 		overflow-y:visible;
 		overflow-x:hidden;
 		border:0px solid black;
 		visibility:visible;
 		padding:20px;
-		left:2px;
+		left:50%;
 	}
 
 	.emailfeildset
 	{
 		position:absolute;
-		left:42.5%;
+		left:0;
 		height:99%;
 		top:0%;
-		width:55%;
-		border:3px solid black;
+		width:50%;
+		border:0px solid black;
 		border-style:groove;
 		visibility:visible;
 		padding:10px;
@@ -46,5 +51,6 @@ input,textarea,input[type="submit"],input[type="reset"] {background-color:#7F9FB
 	   color: #220CED;
 	   background-color:#d6ba65
 	}
-	  
+	 
+
 	
