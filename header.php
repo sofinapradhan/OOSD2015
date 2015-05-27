@@ -16,8 +16,8 @@
 <meta charset='UTF-8' />
 <title><?= $header_title ?></title>
 <link href='img/favicon.ico' rel='shortcut icon' type='image/x-icon' />
-<link href='global.css' rel='stylesheet' type='text/css' />
 <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css' rel='stylesheet' type='text/css' /> <!-- Latest compiled and minified CSS -->
+<link href='global.css' rel='stylesheet' type='text/css' />
 <?php
 if (isset($header_style))
 {
