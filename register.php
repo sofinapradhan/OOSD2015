@@ -232,8 +232,8 @@ print ("</select></td>
 	onFocus='showHint(this.name);' onBlur='hideHint(this.name);' /></td>
 	<td id='fi-ccexpiry'><img class='formicon' src='img/icon_info.png' title='Credit Card Expiration'></td>
 	<td id='fb-ccexpiry'></td></tr>
-<tr><td align='center'><input type='reset' name='rsbutton' value='Reset Form' onClick='return confirm(\"Are you sure you want to reset form?\");' /></td>
-	<td align='center'><input type='submit' name='gobutton' value='Submit Registration' onClick='return checkForm();' /></td><td></td><td></td></tr>
+<tr><td></td><td align='center'><input type='reset' name='rsbutton' value='Reset Form' onClick='return confirm(\"Are you sure you want to reset form?\");' /></td><td></td><td></td>
+	<td></td><td align='center'><input type='submit' name='gobutton' value='Submit Form' onClick='return checkForm();' /></td><td></td><td></td></tr>
 </table>
 </form>
 </article>");
