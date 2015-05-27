@@ -1,6 +1,6 @@
 <?php
 /* Written by dostap
- * Date: 2015/05/18
+ * Date: 2015/05/26
  */
 $header_title = "Welcome to Travel Experts";
 $header_style = ["index.css"];
@@ -9,15 +9,15 @@ $header_script = [
 	"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"];		/* Latest compiled JavaScript */
 include "header.php";
 ?>
-
+<div id="pageContainer">
 	<div id="wrapper1">
 	<section>
 	<h3>Let's find YOUR perfect vacation!</h3>
-	<img src="img/beach.jpg" /><br / >
+		<img src="img/beach.jpg" /><br / >
 			<form id="list" method="get" action="">
 
 				<label for="location">Where would you like to go?</label>
-				<select onchange="top.location.href = 'packages.php?packageName='+ this.options[ this.selectedIndex ].value" >
+				<select onchange="top.location.href = 'packages.php?packageId='+ this.options[ this.selectedIndex ].value" >
 
 				<option value="" disabled selected>Choose by Package Name</option>
 				
@@ -55,9 +55,9 @@ include "header.php";
 				<input id="dateEnd" type="date" placeholder="Date Range: End"></input>
 				<button type="button"
 				onclick="top.location.href = 'packages.php?dateStart='+document.getElementById('dateStart').value+
-				'&dateEnd='+document.getElementById('dateEnd').value">Go!</button>
+				'&dateEnd='+document.getElementById('dateEnd').value">Go!</button><br />
 
-				<label for="vacationType">What type of vacation would you prefer?</label>
+				<label for="vacationType">What type of vacation would you prefer?</label><br />
 				<select onchange="top.location.href = 'packages.php?type='+ this.options[ this.selectedIndex ].value" >
 				<option value="" disabled selected>Choose by Vacation Type</option>
 				<option value="Cruise">Cruise</option>
@@ -81,61 +81,62 @@ include "header.php";
 	</div>
 		<!-- Wrapper for the carousel-->
 		
-		<div id="wrapper2">
-		<aside>
+	<div id="wrapper2">
+
 			<div id="myCarousel" class="carousel slide" data-ride="carousel">
-	
- 		 		<!-- Indicators -->
-  				<ol class="carousel-indicators">
-				    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-				    <li data-target="#myCarousel" data-slide-to="1"></li>
-				    <li data-target="#myCarousel" data-slide-to="2"></li>
-				    <li data-target="#myCarousel" data-slide-to="3"></li>   
-  				</ol>
+			  <!-- Indicators -->
+			  <ol class="carousel-indicators">
+			    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+			    <li data-target="#myCarousel" data-slide-to="1"></li>
+			    <li data-target="#myCarousel" data-slide-to="2"></li>
+			    <li data-target="#myCarousel" data-slide-to="3"></li>
+			    <li data-target="#myCarousel" data-slide-to="4"></li>
+			  </ol>
 
-  
-				<div class="carousel-inner" role="listbox">
-					<div class="item active">
-					    <img src="img/promo1.jpg" alt="promo1">
-					       <div class="carousel-caption">
-					        	<p><a class="carButton" href="promos.php#promo1" role="carButton">Contact Us for Details</a></p>
-					       </div> <!--close carousel-caption class div-->
-						<h3>Enjoy the Sand...On Us!</h3>
-						<p>Limited Time Offer</p>
-					</div><!--close item class div-->
+			  <!-- Wrapper for slides -->
+			  <div class="carousel-inner" role="listbox">
 
-					<div class="item">
-					    <img src="img/promo2.jpg" alt="promo2">
-					    	<div class="carousel-caption">
-					     	   <p><a class="carButton" href="promos.php#promo2" role="carButton">Contact Us for Details</a></p>
-					     	</div><!--close carousel-caption class div-->
-					     	<h3>Your Destination Wedding</h3>
-					     	<p>Bring Your Loved Ones</p>
-					</div><!--close item class div-->
 
-					<div class="item">
-					    <img src="img/promo3.jpg" alt="promo3">
-					     	<div class="carousel-caption">
-					     	   <p><a class="carButton" href="promos.php#promo3" role="carButton">Contact Us for Details</a></p>
-					     	</div><!--close carousel-caption class div-->
-					     	<h3>Bring Your Friends</h3>
-					     	<p>The More The Merrier</p>
-					</div><!--close item class div-->
+			    <div class="item active">
+			      <img src="img/promo1.jpg" alt="Promotion1">
+			      <div class="carousel-caption">
+			        <h3>Enjoy the Sand...On Us!</h3>
+		            <p>Limited Time Offer</p><br />
+		            <a class="carButton" href="register.php" role="button">Sign up today</a>
+			      </div>
+			    </div>
 
-					<div class="item">
-						<img src="img/promo4.jpg" alt="promo4">
-					    	<div  class="carousel-caption">
-					        	<p><a class="carButton" href="promos.php#promo4" role="carButton">Contact Us for Details</a></p>
-					        </div><!--close carousel-caption class div-->	
-					        <h3>Hotel Promotions</h3>
-					     	<p>Become a VIP today</p>
-							
-					</div><!--close item class div-->
+			    <div class="item">
+			      <img src="img/promo2.jpg" alt="Promotion2">
+			      <div class="carousel-caption">
+			        <h3>Your Destination Wedding</h3>
+		            <p>Bring Your Loved Ones</p><br />
+		            <a class="carButton" href="packages.php" role="button">Learn more</a>
+			      </div>
+			    </div>
 
-   				</div> <!-- div for carousel-inner -->
+			    <div class="item">
+			      <img src="img/promo3.jpg" alt="Promotion3">
+			      <div class="carousel-caption">
+			        <h3>Bring Your Friends</h3>
+		             <p>The More The Merrier</p><br />
+		             <a class="carButton" href="register.php" role="button">Register With Us</a>
+			      </div>
+			    </div>
 
-			 <!-- Left and right controls -->
-		
+			    <div class="item">
+			      <img src="img/promo4.jpg" alt="Promotion4">
+			      <div class="carousel-caption">
+			        <h3>Hotel Promotions</h3>
+		             <p>Become a VIP today</p><br />
+		             <a class="carButton" href="contact.php" role="button">Contact Us</a>
+			      </div>
+			    </div>
+
+
+			  </div><!-- close carousel inner div -->
+
+			  <!-- Left and right controls -->
 			  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
 			    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 			    <span class="sr-only">Previous</span>
@@ -144,9 +145,22 @@ include "header.php";
 			    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 			    <span class="sr-only">Next</span>
 			  </a>
-			</div><!-- div for myCarousel -->
-		</aside> 		
-		</div> <!--close wrapper2 div-->
+			
+
+		</div><!--wrapper2 div closed-->
+	</div><!-- close the container-->
+		
+		
+		<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="../../assets/js/vendor/holder.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 <?php
 include "footer.php";
 ?>
+
