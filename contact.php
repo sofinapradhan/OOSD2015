@@ -87,7 +87,8 @@ include("db.php");
 <body>
 <main> 
 	<div class="imgfeildset">
-		<h3><center>Agencies Contact Information:</center></h3><br/>
+	    <p font size="2" align="right">* Click the addresses below to get the list of agents</p>
+		<h3>Agencies Contact Information:</h3><br/>
 		<?php
 			$query = "select * from Agencies";
 			$result = mysqli_query($con, $query) or die (" SQL query error");
@@ -109,7 +110,7 @@ include("db.php");
 					echo "$mainaddress";
 					echo "</p>";
 					 // assigning iframe properties to show google maps for the addresses. The address is being retrieved fron the database. One more column needs to be added to Agency table
-					$outimage = "<iframe width='369' height='150' frameborder='1' scrolling='no' marginheight='0' marginwidth='0' src='";
+					$outimage = "<iframe width='500' height='150' frameborder='1' scrolling='no' marginheight='0' marginwidth='0' src='";
 					$outimage .= $row["AgncyMap"];
 					$outimage .= "'></iframe>";
 					print("$outimage <br />");
@@ -133,27 +134,28 @@ include("db.php");
 		        <table cellpadding="3" cellspacing="0" border="0" width="98%" align="left">
 			        <tr>
 				       <td class="tblleftcol"><label for="fname">Your First Name:</td>
-					   <td class="tblrightcol"><input tabindex=1 type="text" name="fname" size=40></td>
+					   <td class="tblrightcol"><input tabindex=1 type="text" name="fname" size=30></td>
 				    </tr>
 				    <tr>
 				      <td class="tblleftcol"><label for="lname">Your Last Name:</label></td>
-					  <td class="tblrightcol"><input tabindex=2 type="text" name="lname" size=40></td>
+					  <td class="tblrightcol"><input tabindex=2 type="text" name="lname" size=30></td>
 				    </tr>
 				    <tr>
 				       <td class="tblleftcol"><label for="email">Your Email Address:</label></td>
-					   <td class="tblrightcol"><input tabindex=3 type="email" name="email" size=40></td>
+					   <td class="tblrightcol"><input tabindex=3 type="email" name="email" size=30></td>
 				    </tr>
 				    <tr>
 				       <td class="tblleftcol"><label for="phoneno">Phone Number:</label></td> 
-					   <td align="left"><input type="number" tabindex=4 maxlength=40 size=40 name="phoneno"></td>   
+					   <td align="left"><input type="text" tabindex=4 maxlength=12 size=30 placeholder="XXX-XXX-XXXX" name="phoneno"></td>   
 				    </tr>
 				    <tr>
 				       <td class="tblleftcol"><label for="comments">Comments:</label></td>
-					   <td class="tblrightcol"><textarea tabindex=7 name="comments" rows="4" cols="40"></textarea></td>
+					   <td class="tblrightcol"><textarea tabindex=7 name="comments" rows="4" cols="28
+					   "></textarea></td>
 				    </tr>
 			   	    <tr>
-				       <td></td><td ><input tabindex=8 type="submit" value="Submit" class="btn btn-default" onclick="return validate()">  <!-- checking for field validation -->
-				        <input tabindex=9 type="reset" value="Reset" class="btn btn-default" class="tblrightcol"></td>
+				      <td></td><td align="left"><input tabindex=8 type="submit" value="Submit" onclick="return validate()">  <!-- checking for field validation -->
+				        <input tabindex=9 type="reset" value="Reset"  class="tblrightcol"></td>
 				    </tr>
 			    </table>
 		  </form>
