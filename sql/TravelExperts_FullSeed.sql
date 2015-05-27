@@ -210,8 +210,8 @@ INSERT INTO `Affiliations` (`AffilitationId`, `AffName`, `AffDesc`)  VALUES('ACT
 INSERT INTO `Affiliations` (`AffilitationId`, `AffName`, `AffDesc`)  VALUES('NEW', NULL, NULL);
 INSERT INTO `Affiliations` (`AffilitationId`, `AffName`, `AffDesc`)  VALUES('NEWPGY', NULL, NULL);
 INSERT INTO `Affiliations` (`AffilitationId`, `AffName`, `AffDesc`)  VALUES('PGY', NULL, NULL);
-INSERT INTO `Agencies` (`AgencyId`, `AgncyAddress`, `AgncyCity`, `AgncyProv`, `AgncyPostal`, `AgncyCountry`, `AgncyPhone`, `AgncyFax`)  VALUES(1, '1155 8th Ave SW', 'Calagary', 'AB', 'T2P1N3', 'Canada', '4032719873', '4032719872');
-INSERT INTO `Agencies` (`AgencyId`, `AgncyAddress`, `AgncyCity`, `AgncyProv`, `AgncyPostal`, `AgncyCountry`, `AgncyPhone`, `AgncyFax`)  VALUES(2, '110 Main Street', 'Okatokes', 'AB', 'T7R3J5', 'Canada', '4035632381', '4035632382');
+INSERT INTO `Agencies` (`AgencyId`, `AgncyAddress`, `AgncyCity`, `AgncyProv`, `AgncyPostal`, `AgncyCountry`, `AgncyPhone`, `AgncyFax`)  VALUES(1, '1155 8th Ave SW', 'Calgary', 'AB', 'T2P1N3', 'Canada', '4032719873', '4032719872');
+INSERT INTO `Agencies` (`AgencyId`, `AgncyAddress`, `AgncyCity`, `AgncyProv`, `AgncyPostal`, `AgncyCountry`, `AgncyPhone`, `AgncyFax`)  VALUES(2, '110 Main Street', 'Okotoks', 'AB', 'T7R3J5', 'Canada', '4035632381', '4035632382');
 INSERT INTO `Agents` (`AgentId`, `AgtFirstName`, `AgtMiddleInitial`, `AgtLastName`, `AgtBusPhone`, `AgtEmail`, `AgtPosition`, `AgencyId`)  VALUES(1, 'Janet', NULL, 'Delton', '(403) 210-7801', 'janet.delton@travelexperts.com', 'Senior Agent', 1);
 INSERT INTO `Agents` (`AgentId`, `AgtFirstName`, `AgtMiddleInitial`, `AgtLastName`, `AgtBusPhone`, `AgtEmail`, `AgtPosition`, `AgencyId`)  VALUES(2, 'Judy', NULL, 'Lisle', '(403) 210-7802', 'judy.lisle@travelexperts.com', 'Intermediate Agent', 1);
 INSERT INTO `Agents` (`AgentId`, `AgtFirstName`, `AgtMiddleInitial`, `AgtLastName`, `AgtBusPhone`, `AgtEmail`, `AgtPosition`, `AgencyId`)  VALUES(3, 'Dennis', 'C.', 'Reynolds', '(403) 210-7843', 'dennis.reynolds@travelexperts.com', 'Junior Agent', 1);
